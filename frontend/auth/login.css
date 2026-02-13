@@ -1,0 +1,21 @@
+html{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.
