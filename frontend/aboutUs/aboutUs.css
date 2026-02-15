@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CABECERA */
+.cabecera{
+    background-color: #6b1f1f;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+}
+
+.izq{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.izq img{
+    height: 55px;
+}
+
+.izq h1{
+    color: #f2d28b;
+}
+
+.navegador a{
+    color: #f2d28b;
+    text-decoration: none;
+}
+
+.navegador a:hover{
+    text-decoration: underline;
+}
+
+
+/* HERO */
+.hero{
+    height: 320px;
+    background: url("../assets/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding-left: 60px;
+}
+
+.heroCaja{
+    background-color: rgba(107, 31, 31, 0.85);
+    color: #f2d28b;
+    padding: 20px 25px;
+    border-radius: 15px;
+}
+
+
+/* CONTENIDO */
+.contenido{
+    padding: 50px 60px;
+    background-color: #e9e1d0;
+}
+
+.tarjetas{
+    display: flex;
+    gap: 25px;
+}
+
+.card{
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 33%;
+}
+
+.card h3{
+    color: #6b1f1f;
+    margin-bottom: 10px;
+}
+
+
+/* FOOTER */
+.footer{
+    background-color: #6b1f1f;
+    color: #f2d28b;
+    text-align: center;
+    padding: 15px;
+}
