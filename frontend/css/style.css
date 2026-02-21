@@ -4,19 +4,11 @@
     box-sizing: border-box;
 }
 
-/* PALETA
-#D4D9D6 fondo
-#A15918 elementos secundarios
-#E7DAC3 texto claro
-#8C2411 elementos llamativos
-#1E1F1E contenedores
-*/
-
+/* PALETA */
 body{
     background-color: #D4D9D6;
     font-family: 'Cormorant Garamond', serif;
 }
-
 
 /* ================= NAVBAR ================= */
 
@@ -40,17 +32,16 @@ body{
 /* LOGO */
 .logo{
     font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
     color: #1E1F1E;
-    font-weight: 700;
-    letter-spacing: 1px;
 }
 
-/* MENU + BOTON A LA DERECHA */
+/* MENU DERECHA */
 .menu{
-    margin-left: auto;   /* EMPUJA TODO A LA DERECHA */
+    margin-left: auto;
     display: flex;
     gap: 35px;
-    align-items: center;
 }
 
 .menu a{
@@ -65,7 +56,7 @@ body{
 }
 
 .acciones{
-    margin-left: 30px;
+    margin-left: 25px;
 }
 
 .btnStart{
@@ -77,6 +68,8 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
+
+/* ================= HERO ================= */
 
 .hero{
     height: 600px;
@@ -102,7 +95,6 @@ body{
     color: #E7DAC3;
 }
 
-/* TAG */
 .tag{
     background-color: #8C2411;
     padding: 6px 14px;
@@ -113,19 +105,17 @@ body{
     font-size: 14px;
 }
 
-/* TITULO*/
-h1{
+/* TITULO HERO */
+.hero h1{
     font-family: 'Playfair Display', serif;
-    margin-bottom: 20px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
-/* TEXTO NORMAL */
+/* TEXTO */
 .contenidoHero p{
     margin-bottom: 30px;
-    font-family: 'Cormorant Garamond', serif;
 }
-
 
 /* BOTONES */
 
