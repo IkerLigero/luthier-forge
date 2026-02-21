@@ -1,88 +1,155 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.contenedor {
-    width: 100%;
+/* PALETA
+#D4D9D6 fondo
+#A15918 elementos secundarios
+#E7DAC3 texto claro
+#8C2411 elementos llamativos
+#1E1F1E contenedores
+*/
+
+body{
+    background-color: #D4D9D6;
+    font-family: 'Cormorant Garamond', serif;
 }
 
-.cabecera {
-    background-color: #6b1f1f;
-    height: 90px;
+
+/* ================= NAVBAR ================= */
+
+.topbar{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.navbar{
+    background-color: #E7DAC3;
+    width: 90%;
+    height: 70px;
+    border-radius: 40px;
+
     display: flex;
     align-items: center;
-    padding: 0 50px;
+    padding: 0 40px;
+}
+
+/* LOGO */
+.logo{
+    font-family: 'Playfair Display', serif;
+    color: #1E1F1E;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* MENU + BOTON A LA DERECHA */
+.menu{
+    margin-left: auto;   /* EMPUJA TODO A LA DERECHA */
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.menu a{
+    text-decoration: none;
+    color: #1E1F1E;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.menu a:hover{
+    color: #8C2411;
+}
+
+.acciones{
+    margin-left: 30px;
+}
+
+.btnStart{
+    background-color: #8C2411;
+    color: #E7DAC3;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.hero{
+    height: 600px;
+    background-image: linear-gradient(
+        to right,
+        rgba(30,31,30,0.85),
+        rgba(30,31,30,0.5),
+        rgba(30,31,30,0.2),
+        rgba(30,31,30,0)
+    ),
+    url("../assets/bannerpro.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+}
+
+.contenidoHero{
+    max-width: 600px;
+    color: #E7DAC3;
+}
+
+/* TAG */
+.tag{
+    background-color: #8C2411;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+/* TITULO*/
+h1{
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* TEXTO NORMAL */
+.contenidoHero p{
+    margin-bottom: 30px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+
+/* BOTONES */
+
+.botones{
+    display: flex;
     gap: 20px;
 }
 
-/* Logo */
-.cabecera img {
-    height: 55px;
-    width: auto;
+.btnPrincipal{
+    background-color: #8C2411;
+    color: #E7DAC3;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
-/* Título */
-.cabecera h1 {
-    color: #f2d28b;
-    font-size: 34px;
-    font-weight: normal;
-    margin-right: auto; 
+.btnSecundario{
+    border: 2px solid #E7DAC3;
+    color: #E7DAC3;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
-
-/* Navegación */
-.navegador .lista {
-    list-style: none;
-    display: flex;
-    gap: 35px;
-}
-
-.navegador .lista li {
-    color: #f2d28b;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.navegador .lista li:hover {
-    text-decoration: underline;
-}
-
-
-.banner{
-    background: url(/assets/banner.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 550px;
-
-    display: flex;
-    align-items: center;
-    padding-left: 80px;
-}
-
-/* Bloque texto izquierda */
-.textoBanner{
-    background-color: rgba(107, 31, 31, 0.85);
-    color: #f2d28b;
-    width: 50%;
-    padding: 40px;
-    border-radius: 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 400px;
-}
-
-/* Botón abajo */
-.empezar{
-    background-color: #f2d28b;
-    color: #6b1f1f;
-    border: none;
-    padding: 15px 40px;
-    font-size: 18px;
-    cursor: pointer;
-    align-self: flex-start;
-    border-radius: 5px;
-}
-
