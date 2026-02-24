@@ -37,30 +37,39 @@ body{
 }
 
 #titulo{
-    margin: 10px 0;
+    margin-top:10px;
+    margin-bottom: 0px;
     font-size: 3rem;
     font-family: "Playfair Display", serif;
     /* Itroducir fuente */
 }
 
+
+/* ==== BOTONES ===== */
 #btn-nuevo{
     background-color: #8C2411;
-    color: #E7DAC3;
-    padding: 12px 25px;
-    border-radius: 25px;
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 30px;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
     font-weight: 500;
 }
 
 #btn-coleccion{
-    border: 2px solid #E7DAC3;
-    color: #E7DAC3;
-    padding: 12px 25px;
-    border-radius: 25px;
+    background-color: transparent;
+    color: #8C2411;
+    padding: 14px 32px;
+    border-radius: 30px;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
     font-weight: 500;
+}
+
+#descripcion{
+    margin-top: 0;
 }
 
 .pie{
