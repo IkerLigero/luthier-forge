@@ -8,3 +8,5 @@ Commit actual v0.0
 Pusheo el develop  
 **Operamos desde develop**
 
+## 23/02/2026 -15:27 - Iker
+Empiezo rama para crear el apartado de personalziación de guitarras

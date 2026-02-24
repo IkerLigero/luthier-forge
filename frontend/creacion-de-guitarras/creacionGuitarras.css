@@ -1,0 +1,69 @@
+
+body{
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /*Tamaños*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    /*Estilos*/
+    background-color: #fcfcfc;
+    font-family: "Montserrat";
+}
+
+
+
+/* Esta parte ha de ser eliminada una vez se implemente THREE */
+.three-pua{
+    margin-top: 130px;
+    background-color: aqua;
+    width: 350px;
+    height: 350px;
+}
+
+
+
+.cuerpo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+}
+
+#titulo{
+    margin: 10px 0;
+    font-size: 3rem;
+    font-family: "Playfair Display", serif;
+    /* Itroducir fuente */
+}
+
+#btn-nuevo{
+    background-color: #8C2411;
+    color: #E7DAC3;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#btn-coleccion{
+    border: 2px solid #E7DAC3;
+    color: #E7DAC3;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.pie{
+    margin-top: auto;
+}
+
