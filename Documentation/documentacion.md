@@ -8,3 +8,14 @@ Commit actual v0.0
 Pusheo el develop  
 **Operamos desde develop**
 
+## 24/02/2026 - 16:00 - Ibai
+Voy ha hacer la pagina del admin para poder meter piezas de guitarra
+**Opero desde el feature pagina-admin**
+
+## 24/02/2026 - 16:16 - Ibai
+He creado arquitectura.sql para meter la sntencia sql de la base de datos  
+**Opero desde el feature pagina-admin**
+
+## 24/02/2026 - 16:55 - Ibai
+Voy a crear los ficheros necesarios .php para la pagina del admin y la demo de subir piezas gbl
+**Opero desde el feature pagina-admin**
