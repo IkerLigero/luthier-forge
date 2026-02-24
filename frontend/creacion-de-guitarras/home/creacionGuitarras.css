@@ -17,6 +17,10 @@ body{
     font-family: "Montserrat";
 }
 
+.botones a {
+    text-decoration: none; /* elimina subrayado */
+    display: inline-block; /* asegura que no se comporte como texto */
+}
 
 
 /* Esta parte ha de ser eliminada una vez se implemente THREE */
