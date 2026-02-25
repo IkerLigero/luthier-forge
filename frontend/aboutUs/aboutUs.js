@@ -44,7 +44,6 @@ function inicio() {
 
     // Evento botones
     $(".btnLeer").click(function () {
-
         // Guardamos en la variable card la tarjeta (.card) mas cercana al boton pulsado q seria el this 
         let card = $(this).closest(".card");//closest para q suba lo necesario (sujeto a cambios), con parent solo subiria un nuvel closest es mas seguro
         card.find(".texto").toggle(); //buscamos texto y mostramos o ocultamos
