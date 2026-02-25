@@ -37,7 +37,6 @@
     text-decoration: underline;
 }
 
-
 /* HERO */
 .hero{
     height: 320px;
@@ -55,7 +54,6 @@
     padding: 20px 25px;
     border-radius: 15px;
 }
-
 
 /* CONTENIDO */
 .contenido{
@@ -80,6 +78,21 @@
     margin-bottom: 10px;
 }
 
+/* BOTÓN */
+.btnLeer{
+    background-color: #6b1f1f;
+    color: #f2d28b;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* TEXTO (oculto al inicio) */
+.texto{
+    display: none;
+}
 
 /* FOOTER */
 .footer{
@@ -88,3 +101,15 @@
     text-align: center;
     padding: 15px;
 }
+
+.darkmode--activated .hero {
+    /* cuadno se active le dejamso solito al hero */
+    isolation: isolate;
+}
+
+/* esto es basicamente para que no le de filtro al hero del body */
+.darkmode--activated .hero,
+.darkmode--activated .hero * {
+    filter: none !important;
+}
+
