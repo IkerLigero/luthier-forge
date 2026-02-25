@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="construccion.js"></script>
+    <title>Configurar</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <aside id="configuracion-guitarras">
+            <button id="cargar-forma" class="btn">Formas</button>
+            <button id="cargar-mastil" class="btn"> Mastiles </button>
+            <button id="cargar-pastillas" class="btn"> Pastillas </button>
+            <button id="borrar-canvas" class="btn"> Resetear </button>
+        </aside>
+
+        <main id="canvas-three">
+            <!-- espacio donde three va a dibujar las guitarras -->
+        </main>
+    </div>
+</body>
+
+</html>

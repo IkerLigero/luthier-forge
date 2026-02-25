@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout principal 25% / 75% */
+.contenedor{
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "conf canva";
+    background: linear-gradient(135deg, #1c1c1c, #111);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* PANEL IZQUIERDO */
+#configuracion-guitarras{
+    grid-area: conf;
+    background: #181818;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 5px 0 25px rgba(0,0,0,0.4);
+}
+
+/* CANVAS THREE */
+#canvas-three{
+    grid-area: canva;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* BOTONES (los mantengo pero los elevo un poco) */
+.btn{
+    background-color: #8C2411;
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(140,36,17,0.4);
+}
+
+.btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(140,36,17,0.6);
+    background-color: #a52d17;
+}
+
+/* Click */
+.btn:active{
+    transform: scale(0.97);
+}
+
+#canvas-three{
+    grid-area: canva;
+    position: relative;
+    overflow: hidden; /* evita desbordes */
+}
+
+/* El canvas que inserte Three ocupa TODO el contenedor */
+#canvas-three canvas{
+    width: 100% !important;
+    height: 100% !important;
+    display: block; /* elimina espacio inline */
+}
