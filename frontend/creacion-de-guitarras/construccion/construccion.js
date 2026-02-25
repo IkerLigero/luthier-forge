@@ -19,7 +19,6 @@ function inicio() {
     const h = contenedor.clientHeight;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(w, h);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     contenedor.appendChild(renderer.domElement);
 
     //Definimos camara
@@ -79,7 +78,7 @@ function inicio() {
     }
 
     // Ajustamos tamaño de obj a ventana
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", (ev) => {
         const newWidth = contenedor.clientWidth;
         const newHeight = contenedor.clientHeight;
 
