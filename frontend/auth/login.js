@@ -79,7 +79,3 @@ function pintarRegistro(){
         '<button type="submit" class="btnPrincipal">Registrarse</button>'
     );
 }
-function mensajeBonito(texto) {
-    $(".msg").remove(); // borra mensajes anteriores
-    $(".main").prepend('<div class="msg">' + texto + '</div>');
-}
