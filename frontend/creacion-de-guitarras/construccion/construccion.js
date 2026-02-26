@@ -78,6 +78,7 @@ function inicio() {
 
     function limpiarEscena() {
         scene.clear();
+        camera.position.set(0, 2, 6);
         scene.add(light);
         scene.add(ambient);
     }
