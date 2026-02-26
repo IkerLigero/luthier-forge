@@ -1,20 +1,107 @@
-html{
-    margin: 0px;
-    padding: 0px;
+/* Reset básico */
+*{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body{
+    background-color: #D4D9D6;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    min-height: 90vh;
+    align-items: center;
 }
 
-
+/* Tarjeta */
 .main{
+    width: 420px;
+    min-height: 85vh;          /* separación arriba y abajo */
+    background-color: #1E1F1E;
+    padding: 40px;
+    border-radius: 20px;
+    color: white;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
+.logo{
+    width: 110px;
+    margin-bottom: 20px;
+}
+
+.titulo{
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Botones tipo uno lleno uno vacío */
+.alternar{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.alternar button{
+    padding: 10px 25px;
+    border-radius: 999px;
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+/* El botón activo va relleno */
+.alternar .activo{
+    background-color: #8C2411;
+    border: none;
+}
+
+/* Formulario */
+#formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input{
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2A2B2A;
+    color: white;
+}
+
+.input:focus{
+    outline: 1px solid #8C2411;
+}
+
+.btnPrincipal{
+    padding: 12px;
+    border-radius: 999px;
+    border: none;
+    background-color: #8C2411;
+    color: white;
+    cursor: pointer;
+}
+
+.btnPrincipal:hover{
+    background-color: #a52a14;
+}
+
+.terminos{
+    margin-top: 25px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.terminos a{
+    color: #8C2411;
+    text-decoration: none;
+}
