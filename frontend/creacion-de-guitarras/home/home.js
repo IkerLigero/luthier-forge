@@ -33,5 +33,23 @@ function inicio() {
     const ambient = new THREE.AmbientLight(0xffffff, 3);
     scene.add(ambient);
 
+
+    //Cargar modelos
     const loader = new GLTFLoader();
+
+    function cargarModelo(ruta) {
+        loader.load(ruta, (gltf) => {
+            scene.add(gltf.scene);
+        },
+            undefined, // Parametro irrelevante
+            (error) => {
+                console.log("Imposible de cargar");
+                console.error(error);
+            });
+    }
+
+    cargarModelo("../../../Modelos");
+
+    
+
 }
