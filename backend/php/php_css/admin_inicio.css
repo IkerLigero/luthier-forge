@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d4d9d6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Tarjeta */
+.main {
+    width: 450px;
+    background-color: #1e1f1e;
+    border-radius: 20px;
+    padding: 45px 35px;
+    text-align: center;
+}
+
+/* Título */
+.titulo {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+/* Contenedor botones */
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Botones principales */
+.btn {
+    padding: 12px;
+    border-radius: 999px;
+    border: none;
+    background-color: #8C2411;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Hover */
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* Botón volver más discreto */
+.btnVolver {
+    padding: 10px;
+    border-radius: 999px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btnVolver:hover {
+    opacity: 0.8;
+}

@@ -32,20 +32,19 @@ function inicio(){
 // Función que pinta el formulario de login
 function pintarLogin(){
 
-    // Vaciar formulario
+    $("#formulario").attr("action", "../../backend/php/login.php");
+    $("#formulario").attr("method", "POST");
+
     $("#formulario").html("");
 
-    // Input email
     $("#formulario").append(
         '<input type="email" name="email" placeholder="Email" class="input" required>'
     );
 
-    // Input contraseña
     $("#formulario").append(
         '<input type="password" name="password" placeholder="Contraseña" class="input" required>'
     );
 
-    // Botón enviar
     $("#formulario").append(
         '<button type="submit" class="btnPrincipal">Iniciar sesión</button>'
     );
@@ -55,7 +54,9 @@ function pintarLogin(){
 // Función que pinta el formulario de registro
 function pintarRegistro(){
 
-    // Vaciar formulario
+    $("#formulario").attr("action", "../../backend/php/registro.php");
+    $("#formulario").attr("method", "POST");
+
     $("#formulario").html("");
 
     $("#formulario").append(
@@ -63,7 +64,7 @@ function pintarRegistro(){
     );
 
     $("#formulario").append(
-        '<input type="text" name="apellido" placeholder="Apellido" class="input" required>'
+        '<input type="text" name="apellidos" placeholder="Apellidos" class="input" required>'
     );
 
     $("#formulario").append(
@@ -77,4 +78,8 @@ function pintarRegistro(){
     $("#formulario").append(
         '<button type="submit" class="btnPrincipal">Registrarse</button>'
     );
+}
+function mensajeBonito(texto) {
+    $(".msg").remove(); // borra mensajes anteriores
+    $(".main").prepend('<div class="msg">' + texto + '</div>');
 }
