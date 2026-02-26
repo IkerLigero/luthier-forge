@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d4d9d6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main {
+    background-color: #1e1f1e;
+    padding: 40px;
+    border-radius: 20px;
+    width: 700px;
+    text-align: center;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    color: #8C2411;
+}
+
+.btnEliminar {
+    background-color: #8C2411;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btnEliminar:hover {
+    opacity: 0.8;
+}
+
+.btnVolver {
+    margin-top: 20px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}

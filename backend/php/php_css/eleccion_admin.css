@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d4d9d6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main {
+    width: 420px;
+    background-color: #1e1f1e;
+    border-radius: 18px;
+    padding: 40px 35px;
+    text-align: center;
+}
+
+.logo {
+    width: 90px;
+    margin-bottom: 18px;
+}
+
+.titulo {
+    color: white;
+    font-weight: 600;
+    margin: 0 0 28px 0;
+    font-size: 18px;
+}
+
+/* contenedor de botones como en login */
+.alternar {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+/* botón rojo (tipo Iniciar sesión) */
+.btnLogin {
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: none;
+    background-color: #8C2411;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* botón borde blanco (tipo Registrarse) */
+.btnRegistro {
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* hover suave */
+.btnLogin:hover,
+.btnRegistro:hover {
+    opacity: 0.85;
+}

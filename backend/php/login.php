@@ -18,12 +18,13 @@ if (mysqli_num_rows($resultado) == 1) {
         $_SESSION["nombre"] = $fila["nombre"];
         $_SESSION["id_rol"] = $fila["id_rol"];
 
-        // 🔥 AQUÍ HACEMOS LA MAGIA
 
         if ($fila["id_rol"] == 2) {
-            header("Location: ../../frontend/admin/eleccion_admin.php");
+            header("Location: /luthier_forge/luthier-forge/backend/php/eleccion_admin.php");
+            exit;
         } else {
-            header("Location: ../../frontend/index.html");
+            header("Location: /luthier_forge/luthier-forge/frontend/index.html");
+            exit;
         }
 
         exit;

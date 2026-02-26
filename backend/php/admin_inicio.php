@@ -1,13 +1,38 @@
 <?php
 session_start();
-if (!isset($_SESSION["admin"])) {
-    header("Location: login_admin.php");
-    exit();
-}
 ?>
 
-<h1>Panel Administrador</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Inicio</title>
+    <link rel="stylesheet" href="php_css/admin_inicio.css">
+</head>
 
-<a href="admin_subir.php">
-    <button>Ir a subir archivos</button>
-</a>
+<body>
+
+<div class="main">
+
+    <h2 class="titulo">Panel de Administración</h2>
+
+    <div class="botones">
+
+        <a href="admin_subir.php">
+            <button class="btn">Subir pieza</button>
+        </a>
+
+        <a href="gestionar_usuarios.php">
+            <button class="btn">Gestionar usuarios</button>
+        </a>
+
+        <a href="eleccion_admin.php">
+            <button class="btnVolver">Volver</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
