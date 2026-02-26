@@ -51,7 +51,12 @@ function inicio() {
     function cargarModelo(ruta) {
         loader.load(ruta, (gltf) => {
             scene.add(gltf.scene);
-        });
+        },
+            undefined, // Parametro irrelevante
+            (error) => {
+                console.log("Imposible de cargar");
+                console.error(error);
+            });
     }
 
     // Interaccion con los botones:
