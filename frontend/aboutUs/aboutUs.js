@@ -3,15 +3,6 @@
 window.onload = inicio;
 
 function inicio() {
-    //declaracino del notyf
-    const notyf = new Notyf({
-        duration: 2000,
-        position: {
-            x: 'right',
-            y: 'top'
-        }
-    });
-
     //dle darkmode
 
     const options = {
@@ -50,10 +41,8 @@ function inicio() {
 
         if ($(this).text() == "Ver texto") {//si el texto es que se pueda ver pues se oculta y viceversa
             $(this).text("Ocultar texto");
-            notyf.success("Texto mostrado"); // notificacion verde
         } else {
             $(this).text("Ver texto");
-            notyf.error("Texto ocultado"); // notificacion roja
         }
 
     });

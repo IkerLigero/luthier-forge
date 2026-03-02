@@ -6,7 +6,7 @@
 
 /* CABECERA */
 .cabecera{
-    background-color: #6b1f1f;
+    background-color: #1E1F1E;
     height: 90px;
     display: flex;
     align-items: center;
@@ -40,7 +40,7 @@
 /* HERO */
 .hero{
     height: 320px;
-    background: url("../assets/banner.jpg");
+    background: url("../assets/fondo_aboutUs.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
