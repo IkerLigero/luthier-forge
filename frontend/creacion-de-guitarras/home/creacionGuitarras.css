@@ -22,15 +22,9 @@ body{
     display: inline-block; /* asegura que no se comporte como texto */
 }
 
-
-/* Esta parte ha de ser eliminada una vez se implemente THREE */
-#three-pua{
-    margin-top: 130px;
-    background-color: aqua;
-    width: 350px;
-    height: 350px;
+#guitarra{
+    margin-top: 60px;
 }
-
 
 
 .cuerpo{
@@ -59,6 +53,7 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 500;
+    width: 200px;
 }
 
 #btn-coleccion{
@@ -70,6 +65,7 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 500;
+    width: 200px;
 }
 
 #descripcion{
