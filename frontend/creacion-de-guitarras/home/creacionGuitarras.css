@@ -26,7 +26,6 @@ body{
 /* Esta parte ha de ser eliminada una vez se implemente THREE */
 #three-pua{
     margin-top: 130px;
-    background-color: aqua;
     width: 350px;
     height: 350px;
 }
