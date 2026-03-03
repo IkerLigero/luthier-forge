@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["admin"])) {
-    header("Location: login_admin.php");
-    exit();
+/* PROTECCIÓN ADMIN REAL */
+if (!isset($_SESSION["id_usuario"]) || $_SESSION["id_rol"] != 2) {
+    header("Location: login.php");
+    exit;
 }
 ?>
 
@@ -36,13 +37,12 @@ Stock: <input type="number" name="stock"><br><br>
 
 <!-- CAMPOS FORMA -->
 <div id="campos_forma">
-    Material/Color: <input type="text" name="color_nombre"><br><br>
-    Código HEX: <input type="text" name="codigo_hex" placeholder="#FFFFFF"><br><br>
+   
 </div>
 
 <!-- CAMPOS MASTIL -->
 <div id="campos_mastil">
-    Calidad: <input type="text" name="calidad"><br><br>
+
     Forma clavijero: <input type="text" name="forma_clavijero"><br><br>
 </div>
 
@@ -94,6 +94,7 @@ function cambiarFormulario() {
     }
 }
 
+/* Ejecutar al cargar */
 cambiarFormulario();
 </script>
 
