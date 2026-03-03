@@ -1,96 +1,71 @@
 <?php
 session_start();
+require "conexion.php";
 
-if (!isset($_SESSION["admin"])) {
-    header("Location: login.php");
-    exit();
+$tipo = $_POST["tipo"];
+
+if($tipo == "forma_base"){
+
+    $nombre = $_POST["nombre"];
+    $imagen = $_FILES["imagen"]["name"];
+
+    move_uploaded_file($_FILES["imagen"]["tmp_name"], "../../frontend/img/".$imagen);
+
+    $sql = "INSERT INTO forma_base (nombre, imagen)
+            VALUES ('$nombre', '$imagen')";
 }
 
-$conn = new mysqli("localhost", "root", "", "luthier_forge");
-if ($conn->connect_error) {
-    die("Error conexión BD");
+if($tipo == "forma_color"){
+
+    $id_forma_base = $_POST["id_forma_base"];
+    $color = $_POST["color"];
+    $descripcion = $_POST["descripcion"];
+    $precio = $_POST["precio"];
+    $unidades = $_POST["unidades"];
+    $glb = $_FILES["glb"]["name"];
+
+    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../frontend/modelos/".$glb);
+
+    $sql = "INSERT INTO forma_color
+            (id_forma_base, color, descripcion, referencia_glb, precio, unidades)
+            VALUES
+            ('$id_forma_base', '$color', '$descripcion', '$glb', '$precio', '$unidades')";
 }
 
-$tipo = $_POST["tipo"] ?? "";
+if($tipo == "pastilla_modelo"){
 
-$nombre = $_POST["nombre"] ?? "";
-$descripcion = $_POST["descripcion"] ?? "";
-$precio = $_POST["precio"] ?? 0;
-$stock = $_POST["stock"] ?? 0;
+    $id_forma_base = $_POST["id_forma_base"];
+    $tipo_pastilla = $_POST["tipo_pastilla"];
+    $glb = $_FILES["glb"]["name"];
 
-$calidad = $_POST["calidad"] ?? "";
-$forma_clavijero = $_POST["forma_clavijero"] ?? "";
+    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../frontend/modelos/".$glb);
 
-$id_forma = $_POST["id_forma"] ?? null;
-$tipo_pastilla = $_POST["tipo_pastilla"] ?? null;
-
-$color_nombre = $_POST["color_nombre"] ?? null;
-$codigo_hex = $_POST["codigo_hex"] ?? null;
-
-/* ---------- SUBIR IMAGEN ---------- */
-$imagen_nombre = $_FILES["imagen"]["name"] ?? "";
-$ruta_imagen = null;
-
-if ($imagen_nombre != "") {
-    $ruta_imagen = "imagenes_asociadas/" . $imagen_nombre;
-    move_uploaded_file($_FILES["imagen"]["tmp_name"], "../../" . $ruta_imagen);
+    $sql = "INSERT INTO pastilla_modelo
+            (id_forma_base, tipo, referencia_glb)
+            VALUES
+            ('$id_forma_base', '$tipo_pastilla', '$glb')";
 }
 
-/* ---------- SUBIR GLB ---------- */
-$glb_nombre = $_FILES["glb"]["name"] ?? "";
-$ruta_glb = null;
+if($tipo == "mastil"){
 
-if ($glb_nombre != "") {
-    $ruta_glb = "Modelos/" . $glb_nombre;
-    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../" . $ruta_glb);
-}
+    $nombre = $_POST["nombre"];
+    $descripcion = $_POST["descripcion"];
+    $precio = $_POST["precio"];
+    $forma_clavijero = $_POST["forma_clavijero"];
+    $stock = $_POST["stock"];
+    $imagen = $_FILES["imagen"]["name"];
+    $glb = $_FILES["glb"]["name"];
 
-/* ---------- INSERT SEGÚN TIPO ---------- */
-
-if ($tipo == "forma") {
-
-    $sql = "INSERT INTO forma
-    (nombre, descripcion, color_nombre, codigo_hex, imagen, referencia_glb, precio_base, stock)
-    VALUES
-    ('$nombre', '$descripcion', '$color_nombre', '$codigo_hex', '$ruta_imagen', '$ruta_glb', $precio, $stock)";
-
-}
-
-elseif ($tipo == "mastil") {
+    move_uploaded_file($_FILES["imagen"]["tmp_name"], "../../frontend/img/".$imagen);
+    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../frontend/modelos/".$glb);
 
     $sql = "INSERT INTO mastil
-    (nombre, descripcion, imagen, referencia_glb, precio, calidad, forma_clavijero, stock)
-    VALUES
-    ('$nombre', '$descripcion', '$ruta_imagen', '$ruta_glb', $precio, '$calidad', '$forma_clavijero', $stock)";
-
+            (nombre, descripcion, imagen, referencia_glb, precio, forma_clavijero, stock)
+            VALUES
+            ('$nombre', '$descripcion', '$imagen', '$glb', '$precio', '$forma_clavijero', '$stock')";
 }
 
-elseif ($tipo == "pastilla") {
+mysqli_query($conn, $sql);
 
-    $sql = "INSERT INTO pastilla
-    (nombre, descripcion, id_forma, tipo, imagen, referencia_glb, precio, calidad, stock)
-    VALUES
-    ('$nombre', '$descripcion', $id_forma, '$tipo_pastilla', '$ruta_imagen', '$ruta_glb', $precio, '$calidad', $stock)";
-
-}
-
-elseif ($tipo == "guitarra_forma") {
-
-    $id_mastil = $_POST["id_mastil"] ?? null;
-    $id_pastilla2 = $_POST["id_pastilla"] ?? null;
-
-    $sql = "INSERT INTO guitarra_forma
-    (id_forma, id_mastil, id_pastilla, precio_total, stock)
-    VALUES
-    ($id_forma, $id_mastil, $id_pastilla2, $precio, $stock)";
-
-}
-
-else {
-    die("Tipo inválido");
-}
-
-$conn->query($sql);
-
-echo "Pieza subida correctamente";
+echo "Insertado correctamente";
 ?>
