@@ -1,0 +1,147 @@
+:root {
+    --negro-app: #1E1F1E;
+    --hueso-fondo: #FCFCFC;    /* Tu nuevo color de fondo principal */
+    --crema-aux: #f3efe8;      /* Solo para bordes o detalles mínimos */
+    --rojo-luthier: #8C2411;
+    --marron-madera: #A15918;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--hueso-fondo);
+    color: var(--negro-app);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TIPOGRAFÍAS */
+h1, .titulo-display, h3 { font-family: 'Playfair Display', serif; }
+.subtitulo, .texto-escueto, .btn-nav { font-family: 'Cormorant Garamond', serif; }
+.texto-tecnico, .footer-simple { font-family: 'Montserrat', sans-serif; }
+
+/* CABECERA */
+.cabecera {
+    padding: 30px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--hueso-fondo);
+}
+
+.izq { display: flex; align-items: center; gap: 15px; }
+.mini-logo { width: 45px; }
+.izq h1 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+
+.alternar {
+    display: flex;
+    gap: 10px;
+    background: #f0f0f0; /* Un gris muy suave para el contenedor de botones */
+    padding: 6px;
+    border-radius: 999px;
+}
+
+.btn-nav {
+    padding: 8px 25px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--negro-app);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-nav.activo {
+    background-color: var(--rojo-luthier);
+    color: var(--hueso-fondo);
+}
+
+/* HERO SECTION */
+.hero-minimal {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.titulo-display {
+    font-size: 3.5rem;
+    color: var(--negro-app);
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    font-size: 1.5rem;
+    color: var(--marron-madera);
+}
+
+/* CONTENEDOR DE TARJETAS */
+.contenedor-principal {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 80px 20px;
+}
+
+.grid-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.tarjeta-moderna {
+    background-color: var(--crema-aux); /* Resalta ligeramente sobre el fondo hueso */
+    padding: 45px 35px;
+    border-radius: 20px; /* Bordes redondeados según tu referencia */
+    border: 1px solid rgba(0,0,0,0.03); /* Casi imperceptible */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-moderna:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(140, 36, 17, 0.08); /* Sombra con un toque del color resaltar */
+}
+
+.indicador {
+    width: 40px;
+    height: 3px;
+    background-color: var(--rojo-luthier);
+    border-radius: 999px;
+    margin-bottom: 25px;
+}
+
+.tarjeta-moderna h3 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: var(--negro-app);
+}
+
+.texto-escueto {
+    color: var(--marron-madera);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.texto-tecnico {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    text-align: left;
+}
+
+/* FOOTER */
+.footer-simple {
+    text-align: center;
+    padding: 50px;
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px solid #eee;
+}
+
+.resaltado { 
+    color: var(--rojo-luthier); 
+    font-weight: bold; 
+}
