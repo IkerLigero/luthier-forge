@@ -1,71 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros - Luthier Forge</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="aboutUs.css">
-
-    <!-- pa q vaya jquery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <!-- para el darkmode -->
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-    <!-- para el notyf -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-
-    <script src="aboutUs.js"></script>
 </head>
-
-<body class="darkmode--activated">
+<body>
 
     <header class="cabecera">
         <div class="izq">
-            <img src="../assets/logo.png" alt="Logo">
+            <img src="../assets/logo.png" alt="Logo" class="mini-logo">
             <h1>Luthier Forge</h1>
         </div>
-
-        <nav class="navegador">
-            <a href="../index.html">Inicio</a>
+        <nav class="alternar">
+            <a href="../index.html" class="btn-nav">Inicio</a>
+            <a href="#" class="btn-nav activo">Nosotros</a>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="heroCaja">
-            <h2>Sobre Nosotros</h2>
-            <p>Pasión por la madera, el sonido y la personalización.</p>
-        </div>
-    </section>
+    <main class="contenedor-principal">
+        <section class="hero-minimal">
+            <h2 class="titulo-display">Sobre Nosotros</h2>
+            <p class="subtitulo">Pasión por la madera y el sonido personalizado.</p>
+        </section>
 
-    <main class="contenido">
-        <section class="tarjetas">
-
-            <article class="card" id="mision">
+        <section class="grid-tarjetas">
+            <article class="tarjeta-moderna">
+                <div class="indicador"></div>
                 <h3>Nuestra misión</h3>
-                <button class="btnLeer">Ver texto</button>
+                <p class="texto-escueto">Excelencia en cada fibra.</p>
+                <p class="texto-tecnico">En Luthier Forge, nuestra misión trasciende la simple fabricación. Buscamos la unión perfecta entre la acústica tradicional y las necesidades del músico moderno.</p>
             </article>
 
-            <article class="card" id="ofrecemos">
+            <article class="tarjeta-moderna">
+                <div class="indicador"></div>
                 <h3>Qué ofrecemos</h3>
-                <button class="btnLeer">Ver texto</button>
+                <p class="texto-escueto">Configuración artesanal.</p>
+                <p class="texto-tecnico">Una plataforma intuitiva donde seleccionar maderas tonales, herrajes de alta precisión y acabados que definen tu identidad sonora única.</p>
             </article>
 
-            <article class="card" id="trabajamos">
+            <article class="tarjeta-moderna">
+                <div class="indicador"></div>
                 <h3>Cómo trabajamos</h3>
-                <button class="btnLeer">Ver texto</button>
+                <p class="texto-escueto">El arte del detalle.</p>
+                <p class="texto-tecnico">Nuestro proceso es una danza entre la herencia de los antiguos maestros y la precisión tecnológica actual en cada tallado y ajuste manual.</p>
             </article>
-
         </section>
     </main>
 
-    <footer class="footer">
-        <p>© Luthier Forge</p>
+    <footer class="footer-simple">
+        <p>© Luthier Forge · <span class="resaltado">2026</span></p>
     </footer>
 
 </body>
-
 </html>
