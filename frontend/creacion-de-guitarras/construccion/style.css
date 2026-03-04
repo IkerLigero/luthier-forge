@@ -4,76 +4,107 @@
     padding: 0;
 }
 
-/* Layout principal 25% / 75% */
-.contenedor{
+.contenedor {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-areas: "conf canva";
+    grid-template-columns: 350px 1fr; /* Un poco más ancho para las tarjetas */
     background: linear-gradient(135deg, #1c1c1c, #111);
     font-family: 'Montserrat', sans-serif;
 }
 
-/* PANEL IZQUIERDO */
-#configuracion-guitarras{
-    grid-area: conf;
+#configuracion-guitarras {
     background: #181818;
-    padding: 40px 20px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     border-right: 1px solid rgba(255,255,255,0.05);
     box-shadow: 5px 0 25px rgba(0,0,0,0.4);
+    overflow-y: auto; /* Por si hay muchas piezas */
 }
 
-/* CANVAS THREE */
-#canvas-three{
-    grid-area: canva;
-    position: relative;
+/* SUBMENÚS Y TARJETAS */
+.submenu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.card-item {
+    background: #252525;
+    border-radius: 8px;
+    padding: 10px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, border 0.2s;
+    border: 1px solid transparent;
 }
 
+.card-item:hover {
+    transform: scale(1.05);
+    border-color: #8C2411;
+}
 
-/* BOTONES (los mantengo pero los elevo un poco) */
-.btn{
+.card-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.card-item span {
+    color: #eee;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* BOTONES */
+.btn {
     background-color: #8C2411;
     color: #ffffff;
-    padding: 14px 32px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 1rem;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: none;
     cursor: pointer;
     transition: all 0.25s ease;
-    box-shadow: 0 4px 15px rgba(140,36,17,0.4);
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-.btn:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(140,36,17,0.6);
+.btn:hover {
     background-color: #a52d17;
+    box-shadow: 0 4px 15px rgba(140,36,17,0.3);
 }
 
-/* Click */
-.btn:active{
-    transform: scale(0.97);
+.btn-secondary { background-color: #444; margin-top: auto; }
+.btn-secondary:hover { background-color: #555; }
+.btn-success { background-color: #2e7d32; }
+
+.separator {
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 10px 0;
 }
 
-#canvas-three{
-    grid-area: canva;
+#canvas-three {
     position: relative;
-    overflow: hidden; /* evita desbordes */
+    overflow: hidden;
 }
 
-/* El canvas que inserte Three ocupa TODO el contenedor */
-#canvas-three canvas{
+#canvas-three canvas {
     width: 100% !important;
     height: 100% !important;
-    display: block; /* elimina espacio inline */
 }
