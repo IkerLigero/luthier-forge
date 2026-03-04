@@ -14,7 +14,8 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* PANEL IZQUIERDO */
+
+/* panel izquierdo */
 #configuracion-guitarras{
     grid-area: conf;
     background: #181818;
