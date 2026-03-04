@@ -2,12 +2,12 @@
 session_start();
 
 if (!isset($_SESSION["id_usuario"])) {
-    header("Location: /luthier_forge/luthier-forge/frontend/auth/login.html");
+    header("Location: ../../frontend/auth/login.html");
     exit;
 }
 
 if ($_SESSION["id_rol"] != 2) {
-    header("Location: /luthier_forge/luthier-forge/frontend/index.html");
+    header("Location: ../../frontend/index.html");
     exit;
 }
 ?>
@@ -26,7 +26,7 @@ if ($_SESSION["id_rol"] != 2) {
     <h2 class="titulo">Bienvenido Admin <?php echo $_SESSION["nombre"]; ?></h2>
 
     <div class="alternar">
-        <a href="/luthier_forge/luthier-forge/frontend/index.html">
+        <a href="../../frontend/index.html">
             <button type="button" class="btnLogin activo">Ir a página principal</button>
         </a>
 

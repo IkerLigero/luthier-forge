@@ -12,7 +12,7 @@ if (mysqli_num_rows($resultado) == 1) {
 
     $fila = mysqli_fetch_assoc($resultado);
 
-    if ($password == $fila["contraseña_hash"]) {
+    if ($password == $fila["contrasenia_hash"]) {
 
         $_SESSION["id_usuario"] = $fila["id_usuario"];
         $_SESSION["nombre"] = $fila["nombre"];
@@ -20,10 +20,10 @@ if (mysqli_num_rows($resultado) == 1) {
 
 
         if ($fila["id_rol"] == 2) {
-            header("Location: /luthier_forge/luthier-forge/backend/php/eleccion_admin.php");
+            header("Location: ./eleccion_admin.php");
             exit;
         } else {
-            header("Location: /luthier_forge/luthier-forge/frontend/index.html");
+            header("Location: ../../frontend/index.html");
             exit;
         }
 
