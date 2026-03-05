@@ -1,4 +1,5 @@
 <?php
+require "comprobar_sesion.php";
 session_start();
 
 if (!isset($_SESSION["admin"])) {
