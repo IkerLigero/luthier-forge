@@ -22,18 +22,18 @@ async function inicio() {
     const piezasActuales = { forma: null, mastil: null, pastillas: null };
 
     const pathArray = window.location.pathname.split('/');
-    const rootPath = pathArray.slice(0, pathArray.indexOf('frontend')).join('/') + '/';
+    const rootPath = pathArray.slice(0, pathArray.indexOf('frontend')).join('/') + '/'; // Construimos la ruta raíz hasta la carpeta "frontend"
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(contenedor.clientWidth, contenedor.clientHeight);
     contenedor.appendChild(renderer.domElement);
 
-    //Definimos escena
+    //Definimos escena ----------------------------------------------------------------------------------------------------------------------------------------------------------------
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xfcfcfc);
 
-    //Definimos cámara
+    //Definimos cámara ----------------------------------------------------------------------------------------------------------------------------------------------------------------
     const fov = 50;
     const aspect = contenedor.clientWidth / contenedor.clientHeight;
     const near = 0.1;
@@ -41,21 +41,21 @@ async function inicio() {
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.set(0, 0, 10);
 
-    //Definimos controles (OrbitControls)
+    //Definimos controles (OrbitControls) ---------------------------------------------------------------------------------------------------------------------------------------------
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
 
-    function setupLights() {
-        const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
-        scene.add(hemi);
 
-        const dir = new THREE.DirectionalLight(0xffffff, 2);
-        dir.position.set(5, 5, 5);
-        scene.add(dir);
-    }
+    //Definimos luces -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+    scene.add(hemi);
 
-    setupLights();
+    const dir = new THREE.DirectionalLight(0xffffff, 2);
+    dir.position.set(5, 5, 5);
+    scene.add(dir);
 
+
+    //Función para actualizar el tamaño del canvas y la cámara al cambiar el tamaño de la ventana -------------------------------------------------------------------------------------
     function actualizarTamano() {
         const width = contenedor.clientWidth;
         const height = contenedor.clientHeight;
@@ -64,30 +64,27 @@ async function inicio() {
         camera.updateProjectionMatrix();
         renderer.setSize(width, height);
     }
-
     window.addEventListener("resize", actualizarTamano);
 
+    //Definimos loader para modelos GLB ------------------------------------------------------------------------------------------------------------------------------------------------
     const loader = new GLTFLoader();
-
     function cargarModelo(tipo, rutaGlb) {
+        if (!rutaGlb) return; // Si no hay ruta, out
 
-        if (!rutaGlb) return;
+        if (piezasActuales[tipo]) scene.remove(piezasActuales[tipo]); // Eliminamos duplicados del mismo tipo.
 
-        if (piezasActuales[tipo]) scene.remove(piezasActuales[tipo]);
-
+        // Cargamos el modelo GLB y lo agregamos a la escena
         loader.load(rootPath + rutaGlb, (gltf) => {
-
             const obj = gltf.scene;
             obj.position.set(0, 0, 0);
 
             piezasActuales[tipo] = obj;
             scene.add(obj);
-
         });
     }
 
+    //Async Await para obtener datos de componentes desde el backend y poblar los menús ------------------------------------------------------------------------------------------------
     try {
-
         const res = await fetch(rootPath + "backend/php/get_componentes.php");
         const data = await res.json();
 
@@ -95,12 +92,11 @@ async function inicio() {
         poblarMenu("mastil", data.mastiles, subMastil);
         poblarMenu("pastillas", data.pastillas, subPastillas);
 
-    } catch {}
+    } catch {
+        // En caso de error, mostramos un mensaje simple en cada menú
+    }
 
     function poblarMenu(tipo, items, menu) {
-
-        if (!menu) return;
-
         menu.innerHTML = "";
 
         items.forEach(item => {
@@ -195,19 +191,17 @@ async function inicio() {
 
                 await response.json();
 
-            } catch {}
+            } catch { }
 
         };
 
     }
 
+    //Función de animación para renderizar la escena continuamente ------------------------------------------------------------------------------------------------------------------------
     function animate() {
-
         requestAnimationFrame(animate);
-
         controls.update();
         renderer.render(scene, camera);
-
     }
 
     animate();
