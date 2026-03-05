@@ -49,7 +49,7 @@ async function inicio() {
             obj.position.set(0, 0, 0);
 
             piezasActuales[tipo] = obj;
-            scene.add(obj);
+            scene.add(obj);5
 
             console.log(`Cargado ${tipo} en origen:`, rutaGlb);
         }, undefined, (e) => console.error("Error:", e));
