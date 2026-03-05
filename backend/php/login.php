@@ -2,8 +2,8 @@
 session_start();
 require "conexion.php";
 
-$email = $_POST["email"];
-$password = $_POST["password"];
+$email = mysqli_real_escape_string($conn, $_POST["email"]);
+$password = mysqli_real_escape_string($conn, $_POST["password"]);
 
 $sql = "SELECT * FROM usuario WHERE email = '$email'";
 $resultado = mysqli_query($conn, $sql);
@@ -18,22 +18,27 @@ if (mysqli_num_rows($resultado) == 1) {
         $_SESSION["nombre"] = $fila["nombre"];
         $_SESSION["rol"] = $fila["id_rol"];
 
-
         if ($fila["id_rol"] == 2) {
+
             header("Location: ./eleccion_admin.php");
-            exit;
+            exit();
+
         } else {
+
             header("Location: ../../frontend/index.html");
-            exit;
+            exit();
+
         }
 
-        exit;
-
     } else {
+
         echo "Contraseña incorrecta";
+
     }
 
 } else {
+
     echo "Usuario no encontrado";
+
 }
 ?>

@@ -2,6 +2,10 @@
 require "comprobar_sesion.php";
 require "conexion.php";
 
+if(!isset($_POST['id_guitarra'])){
+    exit();
+}
+
 $id_usuario = $_SESSION['id_usuario'];
 $id_guitarra = $_POST['id_guitarra'];
 

@@ -6,7 +6,7 @@ if (!isset($_SESSION["id_usuario"])) {
     exit;
 }
 
-if ($_SESSION["id_rol"] != 2) {
+if ($_SESSION["rol"] != 2) {
     header("Location: ../../frontend/index.html");
     exit;
 }

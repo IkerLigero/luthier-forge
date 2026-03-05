@@ -2,12 +2,6 @@
 require "comprobar_admin.php";
 require "conexion.php";
 
-/* Seguridad básica */
-if (!isset($_SESSION["id_usuario"]) || $_SESSION["id_rol"] != 2) {
-    header("Location: ../../frontend/index.html");
-    exit;
-}
-
 /* BORRAR USUARIO */
 if (isset($_GET["borrar"])) {
     $id = $_GET["borrar"];
