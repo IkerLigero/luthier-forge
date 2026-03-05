@@ -1,3 +1,7 @@
+<?php
+require "../../../backend/php/comprobar_sesion.php";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
