@@ -1,4 +1,5 @@
 <?php
+require "comprobar_sesion.php";
 // Limpiamos cualquier salida previa
 ob_start();
 header('Content-Type: application/json; charset=utf-8');

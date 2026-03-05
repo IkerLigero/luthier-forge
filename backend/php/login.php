@@ -16,7 +16,7 @@ if (mysqli_num_rows($resultado) == 1) {
 
         $_SESSION["id_usuario"] = $fila["id_usuario"];
         $_SESSION["nombre"] = $fila["nombre"];
-        $_SESSION["id_rol"] = $fila["id_rol"];
+        $_SESSION["rol"] = $fila["id_rol"];
 
 
         if ($fila["id_rol"] == 2) {

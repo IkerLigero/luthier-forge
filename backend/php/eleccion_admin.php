@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "comprobar_admin.php";
 
 if (!isset($_SESSION["id_usuario"])) {
     header("Location: ../../frontend/auth/login.html");

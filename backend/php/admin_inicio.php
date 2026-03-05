@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "comprobar_admin.php";
 ?>
 
 <!DOCTYPE html>

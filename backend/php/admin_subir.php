@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "comprobar_admin.php";
 
 if (!isset($_SESSION["id_usuario"]) || $_SESSION["id_rol"] != 2) {
     header("Location: login.php");

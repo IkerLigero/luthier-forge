@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "comprobar_admin.php";
 require "conexion.php";
 
 /* Seguridad básica */
