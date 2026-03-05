@@ -5,94 +5,238 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 window.onload = inicio;
 
 async function inicio() {
-    let contenedor = document.getElementById("canvas-three");
 
-    // RUTA MAESTRA: Detecta si estás en luthier_forge/luthier-forge automáticamente
+    const contenedor = document.getElementById("canvas-three");
+    const btnBorrar = document.getElementById("borrar-canvas");
+    const btnGuardar = document.getElementById("guardar-guitarra");
+
+    const subForma = document.getElementById("sub-forma");
+    const subMastil = document.getElementById("sub-mastil");
+    const subPastillas = document.getElementById("sub-pastillas");
+
+    const btnForma = document.getElementById("cargar-forma");
+    const btnMastil = document.getElementById("cargar-mastil");
+    const btnPastillas = document.getElementById("cargar-pastillas");
+
+    const idsSeleccionados = { forma: null, mastil: null, pastillas: null };
+    const piezasActuales = { forma: null, mastil: null, pastillas: null };
+
     const pathArray = window.location.pathname.split('/');
-    const rootPath = pathArray.slice(0, pathArray.indexOf('frontend')).join('/') + '/';
+    const rootPath = pathArray.slice(0, pathArray.indexOf('frontend')).join('/') + '/'; // Construimos la ruta raíz hasta la carpeta "frontend"
 
-    // --- THREE.JS SETUP ---
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(contenedor.clientWidth, contenedor.clientHeight);
     contenedor.appendChild(renderer.domElement);
 
+    //Definimos escena ----------------------------------------------------------------------------------------------------------------------------------------------------------------
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x111111);
+    scene.background = new THREE.Color(0xfcfcfc);
 
-    const camera = new THREE.PerspectiveCamera(45, contenedor.clientWidth / contenedor.clientHeight, 0.01, 1000);
+    //Definimos cámara ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    const fov = 50;
+    const aspect = contenedor.clientWidth / contenedor.clientHeight;
+    const near = 0.1;
+    const far = 1000;
+    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.set(0, 0, 10);
 
+    //Definimos controles (OrbitControls) ---------------------------------------------------------------------------------------------------------------------------------------------
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.screenSpacePanning = false; // Mantiene el eje mejor para guitarras
-    controls.minDistance = 1;   // Que no te metas dentro de la madera
-    controls.maxDistance = 20;  // Que no se vaya al infinito
 
+
+    //Definimos luces -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+    scene.add(hemi);
+
+    const dir = new THREE.DirectionalLight(0xffffff, 2);
+    dir.position.set(5, 5, 5);
+    scene.add(dir);
+
+
+    //Función para actualizar el tamaño del canvas y la cámara al cambiar el tamaño de la ventana -------------------------------------------------------------------------------------
+    function actualizarTamano() {
+        const width = contenedor.clientWidth;
+        const height = contenedor.clientHeight;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    }
+    window.addEventListener("resize", actualizarTamano);
+
+    //Definimos loader para modelos GLB ------------------------------------------------------------------------------------------------------------------------------------------------
     const loader = new GLTFLoader();
-    const piezasActuales = { forma: null, mastil: null, pastillas: null };
-
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.5));
-    const light = new THREE.DirectionalLight(0xffffff, 2);
-    light.position.set(5, 5, 5);
-    scene.add(light);
-
-    // --- CARGAR MODELOS ---
     function cargarModelo(tipo, rutaGlb) {
-        if (piezasActuales[tipo]) scene.remove(piezasActuales[tipo]);
+        if (!rutaGlb) return; // Si no hay ruta, out
 
+        if (piezasActuales[tipo]) scene.remove(piezasActuales[tipo]); // Eliminamos duplicados del mismo tipo.
+
+        // Cargamos el modelo GLB y lo agregamos a la escena
         loader.load(rootPath + rutaGlb, (gltf) => {
             const obj = gltf.scene;
-
-            // IMPORTANTE: No usamos box.getCenter aquí si queremos que encajen.
-            // Solo reseteamos la posición a 0 para que use el origen del archivo.
             obj.position.set(0, 0, 0);
 
             piezasActuales[tipo] = obj;
             scene.add(obj);
-
-            console.log(`Cargado ${tipo} en origen:`, rutaGlb);
-        }, undefined, (e) => console.error("Error:", e));
-    }
-
-    // --- CARGAR DATOS ---
-    try {
-        const res = await fetch(rootPath + 'backend/php/get_componentes.php');
-        const data = await res.json();
-
-        poblarMenu('forma', data.formas, 'sub-forma');
-        poblarMenu('mastil', data.mastiles, 'sub-mastil');
-        poblarMenu('pastillas', data.pastillas, 'sub-pastillas');
-    } catch (e) { console.error("Error BD:", e); }
-
-    function poblarMenu(tipo, items, contenedorId) {
-        const menu = document.getElementById(contenedorId);
-        items.forEach(item => {
-            const card = document.createElement("div");
-            card.className = "card-item";
-            card.innerHTML = `
-                <img src="${rootPath + item.img}" alt="pieza">
-                <span>${item.nombre}</span>
-            `;
-            card.onclick = () => cargarModelo(tipo, item.glb);
-            menu.appendChild(card);
         });
     }
 
-    // --- ANIMACIÓN ---
+    //Async Await para obtener datos de componentes desde el backend y poblar los menús ------------------------------------------------------------------------------------------------
+    try {
+        const res = await fetch(rootPath + "backend/php/get_componentes.php");
+        const data = await res.json();
+
+        poblarMenu("forma", data.formas, subForma);
+        poblarMenu("mastil", data.mastiles, subMastil);
+        poblarMenu("pastillas", data.pastillas, subPastillas);
+
+    } catch {
+        // En caso de error, mostramos un mensaje simple en cada menú
+    }
+
+    function poblarMenu(tipo, items, menu) {
+        menu.innerHTML = "";
+
+        items.forEach(item => {
+
+            const card = document.createElement("div");
+            card.className = "card-item";
+
+            let idReal = null;
+
+            if (tipo === "forma") idReal = item.id_forma_color ?? item.id;
+            if (tipo === "mastil") idReal = item.id_mastil ?? item.id;
+            if (tipo === "pastillas") idReal = item.id_pastilla_modelo ?? item.id;
+
+            const rutaModelo = item.referencia_glb ?? item.glb ?? null;
+
+            const imagen =
+                item.imagen ??
+                item.imagen_pastillas ??
+                item.img ??
+                "";
+
+            const nombre =
+                item.nombre ??
+                item.color ??
+                item.tipo ??
+                "pieza";
+
+            card.innerHTML = `
+                <img src="${rootPath + imagen}" alt="${nombre}">
+                <span>${nombre}</span>
+            `;
+
+            card.onclick = () => {
+
+                if (!idReal) return;
+
+                cargarModelo(tipo, rutaModelo);
+                idsSeleccionados[tipo] = idReal;
+
+            };
+
+            menu.appendChild(card);
+
+        });
+    }
+
+    if (btnBorrar) {
+
+        btnBorrar.onclick = () => {
+
+            scene.clear();
+
+            const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+            scene.add(hemi);
+
+            const dir = new THREE.DirectionalLight(0xffffff, 2);
+            dir.position.set(5, 5, 5);
+            scene.add(dir);
+
+            Object.keys(idsSeleccionados).forEach(k => idsSeleccionados[k] = null);
+            Object.keys(piezasActuales).forEach(k => piezasActuales[k] = null);
+
+            camera.position.set(0, 0, 10);
+            controls.target.set(0, 0, 0);
+            controls.update();
+
+        };
+
+    }
+
+    if (btnGuardar) {
+
+        btnGuardar.onclick = async () => {
+
+            if (!idsSeleccionados.forma || !idsSeleccionados.mastil || !idsSeleccionados.pastillas) return;
+
+            const payload = {
+                id_forma_color: idsSeleccionados.forma,
+                id_mastil: idsSeleccionados.mastil,
+                id_pastilla_modelo: idsSeleccionados.pastillas
+            };
+
+            try {
+
+                const response = await fetch(rootPath + "backend/php/guardar_guitarra.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                await response.json();
+
+            } catch { }
+
+        };
+
+    }
+
+    //Función de animación para renderizar la escena continuamente ------------------------------------------------------------------------------------------------------------------------
     function animate() {
         requestAnimationFrame(animate);
-        controls.update(); // CRUCIAL para el zoom suave
+        controls.update();
         renderer.render(scene, camera);
     }
+
     animate();
 
-    // Lógica de menús
-    const mapping = { 'cargar-forma': 'sub-forma', 'cargar-mastil': 'sub-mastil', 'cargar-pastillas': 'sub-pastillas' };
+    const mapping = {
+        "cargar-forma": subForma,
+        "cargar-mastil": subMastil,
+        "cargar-pastillas": subPastillas
+    };
+
+    const botones = {
+        "cargar-forma": btnForma,
+        "cargar-mastil": btnMastil,
+        "cargar-pastillas": btnPastillas
+    };
+
     Object.keys(mapping).forEach(id => {
-        document.getElementById(id).onclick = () => {
-            document.querySelectorAll('.submenu').forEach(s => s.classList.add('hidden'));
-            document.getElementById(mapping[id]).classList.remove('hidden');
+
+        const btn = botones[id];
+        const submenu = mapping[id];
+
+        if (!btn) return;
+
+        btn.onclick = () => {
+
+            const oculto = submenu.classList.contains("hidden");
+
+            document.querySelectorAll(".submenu").forEach(s => s.classList.add("hidden"));
+
+            if (oculto) submenu.classList.remove("hidden");
+
+            setTimeout(actualizarTamano, 50);
+
         };
+
     });
+
 }
