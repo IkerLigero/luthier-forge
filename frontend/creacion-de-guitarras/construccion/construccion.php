@@ -10,10 +10,10 @@ require "../../../backend/php/comprobar_sesion.php";
     <link rel="stylesheet" href="style.css">
     <script type="importmap">
         {
-        "imports": {
-            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-            "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-        }
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
         }
     </script>
     <script type="module" src="construccion.js"></script>
