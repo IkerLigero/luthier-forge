@@ -44,7 +44,6 @@ function initMiniScene(container) {
 
     function animate() {
         requestAnimationFrame(animate);
-        // GIRO ELIMINADO: Hemos quitado scene.rotation.y += 0.01;
         renderer.render(scene, camera);
     }
     animate();

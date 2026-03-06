@@ -1,29 +1,98 @@
+/* Tipografía general para textos menores y botones */
+body, .info-guitarra small, .btn-carrito, .precio {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fcfcfc;
+}
+
 .galeria-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 25px;
     padding: 20px;
+}
+
+.titulo-galeria {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 30px 0;
+    color: #1a1a1a;
 }
 
 .card-guitarra {
     background: #fff;
-    border-radius: 12px;
+    border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 450px; 
+    height: 520px;
+    transition: transform 0.3s ease;
+}
+
+.card-guitarra:hover {
+    transform: translateY(-3px);
 }
 
 .canvas-container {
     width: 100%;
-    height: 350px; /* Altura obligatoria para que el canvas se vea */
+    height: 320px;
     background: #fcfcfc;
 }
 
 .info-guitarra {
-    padding: 15px;
-    text-align: center;
-    font-family: sans-serif;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
     border-top: 1px solid #eee;
+}
+
+.info-guitarra p {
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.info-guitarra small {
+    color: #555;
+    line-height: 1.6;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.compra-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.precio {
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 1.2rem;
+}
+
+/* Aplicando tu estilo: .btn + .btn-principal */
+.btn-carrito {
+    background-color: #8c2411;
+    color: #fcfcfc;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    border: 1px solid #8c2411;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-carrito:hover {
+    box-shadow: 0 2px 8px rgba(140, 36, 17, 0.3);
+    transform: scale(1.01);
 }
