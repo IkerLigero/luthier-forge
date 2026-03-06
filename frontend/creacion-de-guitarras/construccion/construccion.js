@@ -168,10 +168,11 @@ async function inicio() {
     }
 
     if (btnGuardar) {
-
         btnGuardar.onclick = async () => {
-
-            if (!idsSeleccionados.forma || !idsSeleccionados.mastil || !idsSeleccionados.pastillas) return;
+            if (!idsSeleccionados.forma || !idsSeleccionados.mastil || !idsSeleccionados.pastillas) {
+                alert("Selecciona todas las piezas antes de guardar.");
+                return;
+            }
 
             const payload = {
                 id_forma_color: idsSeleccionados.forma,
@@ -180,21 +181,23 @@ async function inicio() {
             };
 
             try {
-
                 const response = await fetch(rootPath + "backend/php/guardar_guitarra.php", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
 
-                await response.json();
+                const resultado = await response.json();
 
-            } catch { }
-
+                if (resultado.success) {
+                    alert("¡Guitarra guardada en tu perfil!");
+                } else {
+                    alert("Error al guardar: " + resultado.error);
+                }
+            } catch {
+                // Error de red silencioso
+            }
         };
-
     }
 
     //Función de animación para renderizar la escena continuamente ------------------------------------------------------------------------------------------------------------------------
