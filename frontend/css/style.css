@@ -36,12 +36,20 @@ a {
     align-items:center;
 }
 
-.logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: #1E1F1E;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Playfair Display', serif;
+    font-size:2.2rem;
+    color:#1E1F1E;
 }
 
+.logo img{
+    height:40px;
+    width:auto;
+    margin-right: 10px;
+}
 .menu {
     display: flex;
     gap: 30px;
