@@ -1,14 +1,46 @@
 <?php
-require "comprobar_admin.php";
+session_start();
 require "conexion.php";
 
-?>
+if (!isset($_SESSION["id_usuario"])) {
+    header("Location: login.php");
+    exit;
+}
 
+$id_usuario = $_SESSION["id_usuario"];
+$id_rol = $_SESSION["rol"];
+
+if ($id_rol == 2) {
+    // admin entra siempre
+}
+
+elseif ($id_rol == 3) {
+
+    $sql = "SELECT estado 
+            FROM solicitudes_distribuidor 
+            WHERE id_usuario = $id_usuario 
+            AND estado = 'aceptada'";
+
+    $resultado = mysqli_query($conn,$sql);
+
+    if(mysqli_num_rows($resultado) == 0){
+        echo "No tienes permiso para subir modelos.";
+        exit;
+    }
+
+}
+
+else {
+    echo "No tienes acceso a esta página";
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Subir pieza</title>
+    <link rel="stylesheet" href="php_css/admins_subir.css">
 </head>
 <body>
 
