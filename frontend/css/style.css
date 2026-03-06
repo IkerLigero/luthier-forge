@@ -8,6 +8,7 @@ body {
     background-color: #1E1F1E;
     color: #FCFCFC;
     font-family: 'Montserrat', sans-serif;
+    
     margin: 0;
 }
 
@@ -46,6 +47,7 @@ a {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
     color: #1E1F1E;
+    font-weight: bold;
 }
 
 .menu a:hover {
@@ -78,10 +80,11 @@ a {
 /* HERO */
 .hero{
     width:100%;
-    min-height:88vh;
+    height:100vh;
     background-image:url("../assets/fondo_inicio.png");
     background-size:cover;
-    background-position:right;
+    background-position:center right;
+    background-repeat:no-repeat;
     display:flex;
     align-items:center;
 }
@@ -116,6 +119,7 @@ a {
     font-size: 1.8rem;
     color: #fcfcfc;
     margin-bottom: 30px;
+    color:#E7DAC3;
 }
 
 .botones {
