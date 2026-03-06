@@ -1,3 +1,7 @@
+html, body{
+    height:100vh;
+    overflow:hidden;
+}
 
 body{
     font-size: 1rem;
