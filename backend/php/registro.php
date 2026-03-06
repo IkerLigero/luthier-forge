@@ -6,7 +6,7 @@ $apellidos = $_POST["apellidos"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 
-$sql = "INSERT INTO usuario (nombre, apellidos, email, contraseña_hash, id_rol)
+$sql = "INSERT INTO usuario (nombre, apellidos, email, contrasenia_hash, id_rol)
         VALUES ('$nombre', '$apellidos', '$email', '$password', 1)";
 
 $correcto = mysqli_query($conn, $sql);
