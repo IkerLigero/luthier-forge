@@ -4,61 +4,109 @@ require "conexion.php";
 
 /* BORRAR USUARIO */
 if (isset($_GET["borrar"])) {
+
     $id = $_GET["borrar"];
-    mysqli_query($conn, "DELETE FROM usuario WHERE id_usuario = $id");
+    mysqli_query($conn,"DELETE FROM usuario WHERE id_usuario=$id");
+
+}
+
+/* CAMBIAR ROL */
+if (isset($_POST["guardar"])) {
+
+    $id_usuario = $_POST["id_usuario"];
+    $rol = $_POST["rol"];
+
+    mysqli_query($conn,"UPDATE usuario SET id_rol=$rol WHERE id_usuario=$id_usuario");
+
 }
 
 /* SACAR USUARIOS */
-$sql = "SELECT usuario.id_usuario, usuario.nombre, usuario.email, rol.nombre_rol 
+$sql = "SELECT usuario.id_usuario, usuario.nombre, usuario.email, usuario.id_rol, rol.nombre_rol
         FROM usuario
         INNER JOIN rol ON usuario.id_rol = rol.id_rol";
 
-$resultado = mysqli_query($conn, $sql);
+$resultado = mysqli_query($conn,$sql);
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Gestionar Usuarios</title>
-    <link rel="stylesheet" href="php_css/gestionar_usuarios.css">
+<meta charset="UTF-8">
+<title>Gestionar Usuarios</title>
+<link rel="stylesheet" href="php_css/gestionar_usuarios.css">
 </head>
+
 <body>
 
 <div class="main">
 
-    <h2>Gestionar Usuarios</h2>
+<h2>Gestionar Usuarios</h2>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Rol</th>
-            <th>Acción</th>
-        </tr>
+<table>
 
-        <?php while ($fila = mysqli_fetch_assoc($resultado)) { ?>
-            <tr>
-                <td><?php echo $fila["id_usuario"]; ?></td>
-                <td><?php echo $fila["nombre"]; ?></td>
-                <td><?php echo $fila["email"]; ?></td>
-                <td><?php echo $fila["nombre_rol"]; ?></td>
-                <td>
-                    <a href="gestionar_usuarios.php?borrar=<?php echo $fila["id_usuario"]; ?>">
-                        <button class="btnEliminar">Eliminar</button>
-                    </a>
-                </td>
-            </tr>
-        <?php } ?>
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Email</th>
+<th>Rol</th>
+<th>Acción</th>
+</tr>
 
-    </table>
+<?php
+while($fila = mysqli_fetch_assoc($resultado)){
+?>
 
-    <br>
+<tr>
 
-    <a href="admin_inicio.php">
-        <button class="btnVolver">Volver</button>
-    </a>
+<td><?php echo $fila["id_usuario"]; ?></td>
+
+<td><?php echo $fila["nombre"]; ?></td>
+
+<td><?php echo $fila["email"]; ?></td>
+
+<td>
+
+<form method="POST">
+
+<input type="hidden" name="id_usuario" value="<?php echo $fila["id_usuario"]; ?>">
+
+<select name="rol">
+
+<option value="1" <?php if($fila["id_rol"]==1) echo "selected"; ?>>cliente</option>
+
+<option value="2" <?php if($fila["id_rol"]==2) echo "selected"; ?>>admin</option>
+
+<option value="3" <?php if($fila["id_rol"]==3) echo "selected"; ?>>distribuidor</option>
+
+</select>
+
+<button type="submit" name="guardar">Guardar</button>
+
+</form>
+
+</td>
+
+<td>
+
+<a href="gestionar_usuarios.php?borrar=<?php echo $fila["id_usuario"]; ?>">
+<button class="btnEliminar">Eliminar</button>
+</a>
+
+</td>
+
+</tr>
+
+<?php
+}
+?>
+
+</table>
+
+<br>
+
+<a href="admin_inicio.php">
+<button class="btnVolver">Volver</button>
+</a>
 
 </div>
 

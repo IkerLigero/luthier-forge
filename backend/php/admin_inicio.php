@@ -26,6 +26,10 @@ require "comprobar_admin.php";
             <button type="button" class="btn">Gestionar usuarios</button>
         </a>
 
+        <a href="ver_solicitudes.php">
+            <button type="button" class="btn">Ver solicitudes de distribuidores</button>
+        </a>
+        
         <a href="eleccion_admin.php">
             <button type="button" class="btnVolver">Volver</button>
         </a>

@@ -1,0 +1,76 @@
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#e6e6e6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.panel{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    width:500px;
+    color:white;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.solicitud{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px;
+    border-bottom:1px solid #333;
+}
+
+.nombre{
+    font-size:16px;
+}
+
+.aceptar{
+    background:#2ecc71;
+    padding:8px 14px;
+    border-radius:8px;
+    color:white;
+    text-decoration:none;
+}
+
+.aceptar:hover{
+    background:#27ae60;
+}
+
+.rechazar{
+    background:#ff3b1f;
+    padding:8px 14px;
+    border-radius:8px;
+    color:white;
+    text-decoration:none;
+}
+
+.rechazar:hover{
+    background:#ff5a3d;
+}
+
+.volver{
+    margin-top:20px;
+    text-align:center;
+}
+
+.volver button{
+    background:#333;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+}
+
+.volver button:hover{
+    background:#555;
+}

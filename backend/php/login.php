@@ -34,6 +34,15 @@ if (mysqli_num_rows($resultado) == 1) {
             exit();
 
         }
+
+        /* DISTRIBUIDOR */
+        elseif ($fila["id_rol"] == 3) {
+
+            header("Location: distribuidor_inicio.php");
+            exit();
+
+        }
+
         /* CLIENTE */
         else {
 
