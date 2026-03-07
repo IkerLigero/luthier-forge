@@ -3,13 +3,14 @@ window.onload = inicio;
 
 function inicio(){
 
+    mostrarErrores();
+
     // Pintar login por defecto
     pintarLogin();
 
     // Evento botón login
     $("#btnLogin").click(function(){
 
-        // Activar botón login
         $("#btnLogin").addClass("activo");
         $("#btnRegistro").removeClass("activo");
 
@@ -19,13 +20,50 @@ function inicio(){
     // Evento botón registro
     $("#btnRegistro").click(function(){
 
-        // Activar botón registro
         $("#btnRegistro").addClass("activo");
         $("#btnLogin").removeClass("activo");
 
         pintarRegistro();
     });
 
+}
+
+
+// MOSTRAR ERRORES CON NOTYF
+function mostrarErrores(){
+
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get("error");
+    const registro = params.get("registro");
+
+    if(!error && !registro) return;
+
+    const notyf = new Notyf({
+        duration:4000,
+        position:{x:'right',y:'top'}
+    });
+
+    if(error === "usuario"){
+        notyf.error("Usuario no encontrado");
+    }
+
+    if(error === "password"){
+        notyf.error("Contraseña incorrecta");
+    }
+
+    if(registro === "ok"){
+        notyf.success("Usuario registrado correctamente");
+    }
+
+    if(registro === "existe"){
+        notyf.error("Este email ya está registrado");
+    }
+
+    if(registro === "error"){
+        notyf.error("Error al registrar usuario");
+    }
+
+    window.history.replaceState({}, document.title, window.location.pathname);
 }
 
 

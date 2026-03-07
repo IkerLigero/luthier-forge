@@ -4,7 +4,7 @@ require "conexion.php";
 
 $id_usuario = $_SESSION["id_usuario"];
 
-/* comprobar si ya tiene solicitud */
+/* comprobar si ya tiene solicitud pendiente */
 $sql = "SELECT * FROM solicitudes_distribuidor 
         WHERE id_usuario = $id_usuario 
         AND estado = 'pendiente'";
@@ -12,15 +12,27 @@ $sql = "SELECT * FROM solicitudes_distribuidor
 $resultado = mysqli_query($conn,$sql);
 
 if(mysqli_num_rows($resultado) > 0){
-    echo "Ya tienes una solicitud pendiente.";
-    exit;
+
+    header("Location: distribuidor_inicio.php?solicitud=pendiente");
+    exit();
+
 }
 
 /* crear solicitud */
 $sql = "INSERT INTO solicitudes_distribuidor (id_usuario, estado) 
         VALUES ($id_usuario,'pendiente')";
 
-mysqli_query($conn,$sql);
+$correcto = mysqli_query($conn,$sql);
 
-echo "Solicitud enviada al administrador";
+if($correcto){
+
+    header("Location: distribuidor_inicio.php?solicitud=enviada");
+    exit();
+
+}else{
+
+    header("Location: distribuidor_inicio.php?solicitud=error");
+    exit();
+
+}
 ?>

@@ -1,6 +1,5 @@
 <?php
 require "comprobar_sesion.php";
-session_start();
 require "conexion.php";
 
 $tipo = $_POST["tipo"];
@@ -16,7 +15,7 @@ if($tipo == "forma_base"){
             VALUES ('$nombre', '$imagen')";
 }
 
-if($tipo == "forma_color"){
+elseif($tipo == "forma_color"){
 
     $id_forma_base = $_POST["id_forma_base"];
     $color = $_POST["color"];
@@ -25,7 +24,7 @@ if($tipo == "forma_color"){
     $unidades = $_POST["unidades"];
     $glb = $_FILES["glb"]["name"];
 
-    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../frontend/modelos/".$glb);
+    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../Modelos/".$glb);
 
     $sql = "INSERT INTO forma_color
             (id_forma_base, color, descripcion, referencia_glb, precio, unidades)
@@ -33,13 +32,13 @@ if($tipo == "forma_color"){
             ('$id_forma_base', '$color', '$descripcion', '$glb', '$precio', '$unidades')";
 }
 
-if($tipo == "pastilla_modelo"){
+elseif($tipo == "pastilla_modelo"){
 
     $id_forma_base = $_POST["id_forma_base"];
     $tipo_pastilla = $_POST["tipo_pastilla"];
     $glb = $_FILES["glb"]["name"];
 
-    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../frontend/modelos/".$glb);
+    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../Modelos/".$glb);
 
     $sql = "INSERT INTO pastilla_modelo
             (id_forma_base, tipo, referencia_glb)
@@ -47,7 +46,7 @@ if($tipo == "pastilla_modelo"){
             ('$id_forma_base', '$tipo_pastilla', '$glb')";
 }
 
-if($tipo == "mastil"){
+elseif($tipo == "mastil"){
 
     $nombre = $_POST["nombre"];
     $descripcion = $_POST["descripcion"];
@@ -58,7 +57,7 @@ if($tipo == "mastil"){
     $glb = $_FILES["glb"]["name"];
 
     move_uploaded_file($_FILES["imagen"]["tmp_name"], "../../frontend/img/".$imagen);
-    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../frontend/modelos/".$glb);
+    move_uploaded_file($_FILES["glb"]["tmp_name"], "../../Modelos/".$glb);
 
     $sql = "INSERT INTO mastil
             (nombre, descripcion, imagen, referencia_glb, precio, forma_clavijero, stock)
@@ -66,7 +65,13 @@ if($tipo == "mastil"){
             ('$nombre', '$descripcion', '$imagen', '$glb', '$precio', '$forma_clavijero', '$stock')";
 }
 
-mysqli_query($conn, $sql);
+$correcto = mysqli_query($conn, $sql);
 
-echo "Insertado correctamente";
+if($correcto){
+    header("Location: admin_subir.php?pieza=ok");
+}else{
+    header("Location: admin_subir.php?pieza=error");
+}
+
+exit;
 ?>
