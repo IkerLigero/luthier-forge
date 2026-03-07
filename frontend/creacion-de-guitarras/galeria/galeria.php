@@ -1,11 +1,9 @@
 <?php
-// 1. Aseguramos las rutas de los archivos del backend (3 niveles hacia atrás)
 require_once "../../../backend/php/comprobar_sesion.php";
 require_once "../../../backend/php/conexion.php";
 
 $id_user = $_SESSION['id_usuario'];
 
-// 2. Consulta SQL mejorada para obtener nombres y precios de los componentes
 $sql = "SELECT gu.id_guitarra_usuario, 
                fc.referencia_glb AS glb_forma, 
                fc.descripcion AS nombre_forma,
@@ -30,8 +28,12 @@ $resultado = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <title>Mi Galería - Luthier Forge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="galeria.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script type="importmap">
         {
             "imports": {
@@ -48,10 +50,7 @@ $resultado = mysqli_query($conn, $sql);
     <div class="galeria-grid">
         <?php if (mysqli_num_rows($resultado) > 0): ?>
             <?php while ($row = mysqli_fetch_assoc($resultado)): ?>
-                <?php
-                // Calcular el precio total sumando cuerpo y mástil de la BD
-                $precio_total = $row['precio_forma'] + $row['precio_mastil'];
-                ?>
+                <?php $precio_total = $row['precio_forma'] + $row['precio_mastil']; ?>
                 <div class="card-guitarra">
                     <div class="canvas-container" data-forma="<?php echo $row['glb_forma']; ?>"
                         data-mastil="<?php echo $row['glb_mastil']; ?>" data-pastillas="<?php echo $row['glb_pastillas']; ?>">
@@ -66,13 +65,16 @@ $resultado = mysqli_query($conn, $sql);
                         <hr>
                         <div class="compra-contenedor">
                             <span class="precio"><?php echo number_format($precio_total, 2); ?>€</span>
-                            <button class="btn-carrito">Añadir al carrito</button>
+                            <button class="btn-carrito" data-id="<?php echo $row['id_guitarra_usuario']; ?>"
+                                data-precio="<?php echo $precio_total; ?>">
+                                Añadir al carrito
+                            </button>
                         </div>
                     </div>
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
-            <p style="text-align:center;">No tienes guitarras guardadas todavía.</p>
+            <p style="text-align:center; font-family: 'Montserrat';">No tienes guitarras guardadas todavía.</p>
         <?php endif; ?>
     </div>
 
