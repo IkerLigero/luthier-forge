@@ -66,11 +66,14 @@ Tipo:
 
 <button type="submit">Guardar</button>
 
+<a href="eleccion_admin.php">
+    <button type="button">Volver</button>
+</a>
 </form>
 
 <script>
 function cambiarFormulario() {
-
+    
     let tipo = document.getElementById("tipo").value;
     let cont = document.getElementById("campos");
 

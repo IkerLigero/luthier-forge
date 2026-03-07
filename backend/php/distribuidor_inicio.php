@@ -29,6 +29,7 @@ if(mysqli_num_rows($resultado) > 0){
 <head>
 <meta charset="UTF-8">
 <title>Panel distribuidor</title>
+
 <link rel="stylesheet" href="php_css/distribuidor_inicio.css">
 
 <!-- NOTYF -->
@@ -38,7 +39,11 @@ if(mysqli_num_rows($resultado) > 0){
 
 <body>
 
+<div class="panel">
+
 <h2>Panel del distribuidor</h2>
+
+<div class="estado">
 
 <?php
 
@@ -47,16 +52,16 @@ if($estado == "pendiente"){
 }
 
 elseif($estado == "aceptada"){
-    echo "<p style='color:green;'>Tu solicitud ha sido aceptada. Ya puedes subir modelos.</p>";
+    echo "<p class='aceptado'>Tu solicitud ha sido aceptada. Ya puedes subir modelos.</p>";
 
-    echo '<br>
+    echo '
     <a href="admin_subir.php">
-        <button>Ir a subir modelos</button>
+        <button class="btn">Ir a subir modelos</button>
     </a>';
 }
 
 elseif($estado == "rechazada"){
-    echo "<p style='color:red;'>Tu solicitud ha sido rechazada por el administrador.</p>";
+    echo "<p class='rechazado'>Tu solicitud ha sido rechazada por el administrador.</p>";
 }
 
 else{
@@ -65,19 +70,27 @@ else{
 
 ?>
 
-<br>
+</div>
 
 <?php
 if($estado != "aceptada"){
 ?>
 
 <form action="solicitar_permiso.php" method="POST">
-<button type="submit">Solicitar acceso para subir modelos</button>
+<button class="btn">Solicitar acceso para subir modelos</button>
 </form>
 
 <?php
 }
 ?>
+
+<br>
+
+<a href="logout.php">
+<button class="btn logout">Cerrar sesión</button>
+</a>
+
+</div>
 
 <!-- NOTYF JS -->
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
