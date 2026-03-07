@@ -24,6 +24,12 @@ require "../../../backend/php/comprobar_sesion.php";
     <title>Luthier Forge - Configurar</title>
 </head>
 <body>
+
+    <nav class="pildora-superior">
+        <a href="../home/creacionGuitarras.html" class="btn-pildora">Menu</a>
+        <a href="#" class="btn-pildora activo">Forja</a>
+    </nav>
+
     <div class="contenedor">
         <aside id="configuracion-guitarras">
             <div class="menu-seccion">
@@ -48,7 +54,7 @@ require "../../../backend/php/comprobar_sesion.php";
         </aside>
 
         <main id="canvas-three">
-            </main>
+        </main>
     </div>
 </body>
 </html>
