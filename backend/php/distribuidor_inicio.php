@@ -30,6 +30,10 @@ if(mysqli_num_rows($resultado) > 0){
 <meta charset="UTF-8">
 <title>Panel distribuidor</title>
 <link rel="stylesheet" href="php_css/distribuidor_inicio.css">
+
+<!-- NOTYF -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
 </head>
 
 <body>
@@ -74,6 +78,38 @@ if($estado != "aceptada"){
 <?php
 }
 ?>
+
+<!-- NOTYF JS -->
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const solicitud = params.get("solicitud");
+
+if(solicitud){
+
+    const notyf = new Notyf({
+        duration:4000,
+        position:{x:'right',y:'top'}
+    });
+
+    if(solicitud === "enviada"){
+        notyf.success("Solicitud enviada al administrador");
+    }
+
+    if(solicitud === "pendiente"){
+        notyf.error("Ya tienes una solicitud pendiente");
+    }
+
+    if(solicitud === "error"){
+        notyf.error("Error al enviar la solicitud");
+    }
+
+    window.history.replaceState({}, document.title, window.location.pathname);
+}
+
+</script>
 
 </body>
 </html>

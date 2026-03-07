@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Login - Luthier Forge</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Login - Luthier Forge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS propio -->
-    <link rel="stylesheet" href="login.css">
+<!-- CSS propio -->
+<link rel="stylesheet" href="login.css">
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <!-- JS propio -->
-    <script src="login.js"></script>
+<!-- NOTYF CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
 </head>
 
 <body>
 
-    <!-- Tarjeta principal -->
-    <div class="main">
+<div class="main">
 
-        <!-- Logo -->
-        <img src="../assets/logo.png" alt="logo" class="logo">
+<img src="../assets/logo.png" alt="logo" class="logo">
 
-        <h2 class="titulo">Inicia sesión para continuar</h2>
+<h2 class="titulo">Inicia sesión para continuar</h2>
 
-        <!-- Botones alternar -->
-        <div class="alternar">
-            <button id="btnLogin" class="activo" type="button">Iniciar sesión</button>
-            <button id="btnRegistro" type="button">Registrarse</button>
-        </div>
+<div class="alternar">
+<button id="btnLogin" class="activo" type="button">Iniciar sesión</button>
+<button id="btnRegistro" type="button">Registrarse</button>
+</div>
 
-        <!-- Aquí se genera el formulario dinámicamente -->
-        <form id="formulario" action="../../backend/php/login.php" method="POST"></form>
+<form id="formulario" action="../../backend/php/login.php" method="POST"></form>
 
-        <p class="terminos">
-            Al continuar, aceptas los 
-            <a href="#">términos y condiciones de Luthier Forge</a>
-        </p>
+<p class="terminos">
+Al continuar, aceptas los 
+<a href="#">términos y condiciones de Luthier Forge</a>
+</p>
 
-    </div>
+</div>
+
+<!-- NOTYF JS -->
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+<!-- JS propio -->
+<script src="login.js"></script>
 
 </body>
 </html>

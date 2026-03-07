@@ -53,13 +53,15 @@ if (mysqli_num_rows($resultado) == 1) {
 
     } else {
 
-        echo "Contraseña incorrecta";
+        header("Location: ../../frontend/auth/login.html?error=password");
+        exit();
 
     }
 
 } else {
 
-    echo "Usuario no encontrado";
+    header("Location: ../../frontend/auth/login.html?error=usuario");
+    exit();
 
 }
 ?>
