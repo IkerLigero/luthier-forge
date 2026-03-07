@@ -15,7 +15,7 @@ body, .info-guitarra small, .btn-carrito, .precio {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     text-align: center;
-    margin: 30px 0;
+    margin: 60px 0 30px; /* Aumentado margen superior para que no choque con el botón */
     color: #1a1a1a;
 }
 
@@ -95,4 +95,38 @@ hr {
 .btn-carrito:hover {
     box-shadow: 0 2px 8px rgba(140, 36, 17, 0.3);
     transform: scale(1.01);
+}
+
+/* === ESTILOS DEL BOTÓN DE INICIO FLOTANTE (NUEVO) === */
+.pildora-superior {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: inline-flex;
+    background: #f0f0f0; 
+    padding: 5px;
+    border-radius: 999px;
+    gap: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-pildora {
+    padding: 8px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #1E1F1E;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-pildora.activo {
+    background-color: #8C2411;
+    color: #ffffff;
+}
+
+.btn-pildora:hover:not(.activo) {
+    background-color: #e0e0e0;
 }

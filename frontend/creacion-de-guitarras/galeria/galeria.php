@@ -45,6 +45,11 @@ $resultado = mysqli_query($conn, $sql);
 </head>
 
 <body>
+    <nav class="pildora-superior">
+        <a href="../home/creacionGuitarras.html" class="btn-pildora">Menú</a>
+        <a href="#" class="btn-pildora activo">Forja</a>
+    </nav>
+
     <h1 class="titulo-galeria">Tus guitarras, luthier</h1>
 
     <div class="galeria-grid">
@@ -74,7 +79,7 @@ $resultado = mysqli_query($conn, $sql);
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
-            <p style="text-align:center; font-family: 'Montserrat';">No tienes guitarras guardadas todavía.</p>
+            <p style="text-align:center; font-family: 'Montserrat'; width: 100%; grid-column: 1 / -1;">No tienes guitarras guardadas todavía.</p>
         <?php endif; ?>
     </div>
 

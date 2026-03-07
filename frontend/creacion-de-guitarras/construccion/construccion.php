@@ -26,7 +26,7 @@ require "../../../backend/php/comprobar_sesion.php";
 <body>
 
     <nav class="pildora-superior">
-        <a href="../home/creacionGuitarras.html" class="btn-pildora">Menu</a>
+        <a href="../home/creacionGuitarras.html" class="btn-pildora">Menú</a>
         <a href="#" class="btn-pildora activo">Forja</a>
     </nav>
 
