@@ -1,31 +1,27 @@
+/* --- TU CÓDIGO ORIGINAL (MANTENIDO) --- */
 body{
     font-size: 1rem;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
-    /*Tamaños*/
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-
-    /*Estilos*/
     background-color: #fcfcfc;
     font-family: "Montserrat";
 }
 
 .botones a {
-    text-decoration: none; /* elimina subrayado */
-    display: inline-block; /* asegura que no se comporte como texto */
+    text-decoration: none;
+    display: inline-block;
 }
 
 #guitarra{
     margin-top: 50px;
     margin-bottom: 20px;
 }
-
 
 .cuerpo{
     display: flex;
@@ -39,21 +35,20 @@ body{
     margin-bottom: 0px;
     font-size: 3rem;
     font-family: "Playfair Display", serif;
-    /* Itroducir fuente */
 }
 
-
-/* ==== BOTONES ===== */
 #btn-nuevo{
     background-color: #8C2411;
     color: #ffffff;
     padding: 14px 32px;
     border-radius: 30px;
+    border: none;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     width: 200px;
+    cursor: pointer;
 }
 
 #btn-coleccion{
@@ -61,11 +56,13 @@ body{
     color: #8C2411;
     padding: 14px 32px;
     border-radius: 30px;
+    border: 2px solid #8C2411;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     width: 200px;
+    cursor: pointer;
 }
 
 #descripcion{
@@ -76,3 +73,35 @@ body{
     margin-top: auto;
 }
 
+/* --- NUEVO BOTÓN INICIO (AÑADIDO SIN ROMPER NADA) --- */
+.pildora-inicio {
+    position: fixed; /* Flota sobre la página */
+    top: 30px;       /* Distancia desde arriba */
+    left: 30px;      /* Distancia desde la izquierda */
+    display: inline-flex;
+    background: #f0f0f0; 
+    padding: 6px;
+    border-radius: 999px;
+    gap: 5px;
+    z-index: 1000;   /* Para que siempre esté encima */
+}
+
+.btn-pildora {
+    padding: 8px 25px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #1E1F1E;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn-pildora.activo {
+    background-color: #8C2411;
+    color: #fcfcfc;
+}
+
+.btn-pildora:hover:not(.activo) {
+    background-color: #e0e0e0;
+}
