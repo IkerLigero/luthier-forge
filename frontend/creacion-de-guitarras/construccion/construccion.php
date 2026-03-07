@@ -16,6 +16,10 @@ require "../../../backend/php/comprobar_sesion.php";
             }
         }
     </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
     <script type="module" src="construccion.js"></script>
     <title>Luthier Forge - Configurar</title>
 </head>
