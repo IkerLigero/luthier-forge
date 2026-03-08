@@ -1,7 +1,7 @@
 // Cuando cargue la página
 window.onload = inicio;
 
-function inicio(){
+function inicio() {
 
     mostrarErrores();
 
@@ -9,7 +9,7 @@ function inicio(){
     pintarLogin();
 
     // Evento botón login
-    $("#btnLogin").click(function(){
+    $("#btnLogin").click(function () {
 
         $("#btnLogin").addClass("activo");
         $("#btnRegistro").removeClass("activo");
@@ -18,11 +18,10 @@ function inicio(){
     });
 
     // Evento botón registro
-    $("#btnRegistro").click(function(){
+    $("#btnRegistro").click(function () {
 
         $("#btnRegistro").addClass("activo");
         $("#btnLogin").removeClass("activo");
-
         pintarRegistro();
     });
 
@@ -30,36 +29,36 @@ function inicio(){
 
 
 // MOSTRAR ERRORES CON NOTYF
-function mostrarErrores(){
+function mostrarErrores() {
 
     const params = new URLSearchParams(window.location.search);
     const error = params.get("error");
     const registro = params.get("registro");
 
-    if(!error && !registro) return;
+    if (!error && !registro) return;
 
     const notyf = new Notyf({
-        duration:4000,
-        position:{x:'right',y:'top'}
+        duration: 4000,
+        position: { x: 'right', y: 'top' }
     });
 
-    if(error === "usuario"){
+    if (error === "usuario") {
         notyf.error("Usuario no encontrado");
     }
 
-    if(error === "password"){
+    if (error === "password") {
         notyf.error("Contraseña incorrecta");
     }
 
-    if(registro === "ok"){
+    if (registro === "ok") {
         notyf.success("Usuario registrado correctamente");
     }
 
-    if(registro === "existe"){
+    if (registro === "existe") {
         notyf.error("Este email ya está registrado");
     }
 
-    if(registro === "error"){
+    if (registro === "error") {
         notyf.error("Error al registrar usuario");
     }
 
@@ -68,7 +67,7 @@ function mostrarErrores(){
 
 
 // Función que pinta el formulario de login
-function pintarLogin(){
+function pintarLogin() {
 
     $("#formulario").attr("action", "../../backend/php/login.php");
     $("#formulario").attr("method", "POST");
@@ -90,7 +89,7 @@ function pintarLogin(){
 
 
 // Función que pinta el formulario de registro
-function pintarRegistro(){
+function pintarRegistro() {
 
     $("#formulario").attr("action", "../../backend/php/registro.php");
     $("#formulario").attr("method", "POST");
