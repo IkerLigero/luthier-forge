@@ -4,7 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const notyf = new Notyf({
     duration: 4000,
-    position: { x: 'right', y: 'top' }
+    position: { x: 'right', y: 'bottom' }
 });
 
 window.onload = inicio;
