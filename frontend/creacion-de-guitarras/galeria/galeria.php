@@ -79,7 +79,8 @@ $resultado = mysqli_query($conn, $sql);
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
-            <p style="text-align:center; font-family: 'Montserrat'; width: 100%; grid-column: 1 / -1;">No tienes guitarras guardadas todavía.</p>
+            <p style="text-align:center; font-family: 'Montserrat'; width: 100%; grid-column: 1 / -1;">No tienes guitarras
+                guardadas todavía.</p>
         <?php endif; ?>
     </div>
 

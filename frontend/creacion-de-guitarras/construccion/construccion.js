@@ -308,3 +308,6 @@ async function inicio() {
         };
     });
 }
+
+// Todas las "buenas practicas" como los return y demas componentes han sido proporcionadas por diversas
+// IAs, para hacer el codigo mas practico y escalable.
