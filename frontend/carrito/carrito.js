@@ -19,7 +19,7 @@ function cargarCarrito(){
             }
 
             datos.forEach(item => {
-                // Validación simple para evitar campos vacíos
+
                 let cuerpo = item.nombre_cuerpo || "Cuerpo estándar";
                 let mastil = item.nombre_mastil || "Mástil estándar";
                 let pastillas = item.nombre_pastillas || "Pastillas base";
@@ -37,6 +37,7 @@ function cargarCarrito(){
                         </div>
                     </div>
                 `);
+
                 total += parseFloat(item.precio);
             });
 
@@ -49,16 +50,6 @@ function cargarCarrito(){
 }
 
 function comprar(){
-    $.ajax({
-        url: "../../backend/php/comprar.php",
-        success: function(res){
-            const notyf = new Notyf();
-            if(res.trim() === "success") {
-                notyf.success("¡Compra realizada con éxito!");
-                cargarCarrito();
-            } else {
-                notyf.error("Hubo un problema con la compra");
-            }
-        }
-    });
+    // Redirige a la página de pago con PayPal
+    window.location.href = "../../backend/php/comprar.php";
 }
