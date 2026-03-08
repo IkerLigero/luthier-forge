@@ -76,7 +76,7 @@ body{
 .alternar {
     position: fixed;
     top: 30px;
-    left: 30px;
+    right: 30px;
 
     display: flex;
     gap: 10px;
