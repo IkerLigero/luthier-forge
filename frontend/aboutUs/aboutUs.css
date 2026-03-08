@@ -1,3 +1,5 @@
+/* PALETA DE COLORES */
+
 :root {
     --negro-app: #1E1F1E;
     --hueso-fondo: #FCFCFC;
@@ -6,11 +8,15 @@
     --marron-madera: #A15918;
 }
 
+/* RESET */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* BASE */
 
 body {
     background-color: var(--hueso-fondo);
@@ -21,20 +27,27 @@ body {
 }
 
 /* TIPOGRAFÍAS */
-h1, .titulo-display, h3 { 
-    font-family: 'Playfair Display', serif; 
+
+h1,
+.titulo-nosotros,
+h3 {
+    font-family: 'Playfair Display', serif;
 }
 
-.subtitulo, .texto-escueto { 
-    font-family: 'Cormorant Garamond', serif; 
+.subtitulo-nosotros,
+.texto-destacado {
+    font-family: 'Cormorant Garamond', serif;
 }
 
-.texto-tecnico, .footer-simple, .btn-nav { 
-    font-family: 'Montserrat', sans-serif; 
+.texto-descriptivo,
+.footer-luthier,
+.nav-boton {
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* CABECERA */
-.cabecera {
+
+.header-principal {
     padding: 30px 10%;
     display: flex;
     justify-content: space-between;
@@ -42,11 +55,25 @@ h1, .titulo-display, h3 {
     background-color: var(--hueso-fondo);
 }
 
-.izq { display: flex; align-items: center; gap: 15px; }
-.mini-logo { width: 45px; }
-.izq h1 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+.marca-luthier {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-.alternar {
+.logo-header {
+    width: 45px;
+}
+
+.nombre-marca {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* NAVEGACIÓN */
+
+.nav-principal {
     display: flex;
     gap: 10px;
     background: #f0f0f0;
@@ -54,7 +81,7 @@ h1, .titulo-display, h3 {
     border-radius: 999px;
 }
 
-.btn-nav {
+.nav-boton {
     padding: 8px 25px;
     border-radius: 999px;
     text-decoration: none;
@@ -62,57 +89,63 @@ h1, .titulo-display, h3 {
     transition: all 0.3s ease;
 }
 
-.btn-nav.activo {
+.nav-activo {
     background-color: var(--rojo-luthier);
     color: var(--hueso-fondo);
 }
 
-/* HERO SECTION */
-.hero-minimal {
+/* HERO */
+
+.hero-nosotros {
     text-align: center;
     padding: 80px 20px;
 }
 
-.titulo-display {
+.titulo-nosotros {
     font-size: 3.5rem;
     color: var(--negro-app);
     margin-bottom: 10px;
 }
 
-.subtitulo {
+.subtitulo-nosotros {
     font-size: 1.5rem;
     color: var(--marron-madera);
 }
 
-/* CONTENEDOR DE TARJETAS */
-.contenedor-principal {
+/* CONTENIDO */
+
+.contenedor-contenido {
     flex: 1;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 80px 20px;
 }
 
-.grid-tarjetas {
+/* GRID TARJETAS */
+
+.grid-informacion {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
-.tarjeta-moderna {
-    background-color: var(--crema-aux); /* Resalta ligeramente sobre el fondo hueso */
+/* TARJETAS */
+
+.tarjeta-info-luthier {
+    background-color: var(--crema-aux);
     padding: 45px 35px;
-    border-radius: 20px; /* Bordes redondeados según tu referencia */
-    border: 1px solid rgba(0,0,0,0.03); /* Casi imperceptible */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tarjeta-moderna:hover {
+.tarjeta-info-luthier:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(140, 36, 17, 0.08); /* Sombra con un toque del color resaltar */
+    box-shadow: 0 20px 40px rgba(140, 36, 17, 0.08);
 }
 
-.indicador {
+.barra-acento {
     width: 40px;
     height: 3px;
     background-color: var(--rojo-luthier);
@@ -120,19 +153,19 @@ h1, .titulo-display, h3 {
     margin-bottom: 25px;
 }
 
-.tarjeta-moderna h3 {
+.tarjeta-info-luthier h3 {
     font-size: 2rem;
     margin-bottom: 12px;
     color: var(--negro-app);
 }
 
-.texto-escueto {
+.texto-destacado {
     color: var(--marron-madera);
     font-size: 1.3rem;
     margin-bottom: 20px;
 }
 
-.texto-tecnico {
+.texto-descriptivo {
     font-size: 0.95rem;
     line-height: 1.8;
     color: #4a4a4a;
@@ -140,7 +173,8 @@ h1, .titulo-display, h3 {
 }
 
 /* FOOTER */
-.footer-simple {
+
+.footer-luthier {
     text-align: center;
     padding: 50px;
     font-size: 0.85rem;
@@ -148,7 +182,7 @@ h1, .titulo-display, h3 {
     border-top: 1px solid #eee;
 }
 
-.resaltado { 
-    color: var(--rojo-luthier); 
-    font-weight: bold; 
+.anio-marca {
+    color: var(--rojo-luthier);
+    font-weight: bold;
 }
