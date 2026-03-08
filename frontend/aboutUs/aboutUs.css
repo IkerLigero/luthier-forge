@@ -1,7 +1,7 @@
 :root {
     --negro-app: #1E1F1E;
-    --hueso-fondo: #FCFCFC;    /* Tu nuevo color de fondo principal */
-    --crema-aux: #f3efe8;      /* Solo para bordes o detalles mínimos */
+    --hueso-fondo: #FCFCFC;
+    --crema-aux: #f3efe8;
     --rojo-luthier: #8C2411;
     --marron-madera: #A15918;
 }
@@ -21,9 +21,17 @@ body {
 }
 
 /* TIPOGRAFÍAS */
-h1, .titulo-display, h3 { font-family: 'Playfair Display', serif; }
-.subtitulo, .texto-escueto, .btn-nav { font-family: 'Cormorant Garamond', serif; }
-.texto-tecnico, .footer-simple { font-family: 'Montserrat', sans-serif; }
+h1, .titulo-display, h3 { 
+    font-family: 'Playfair Display', serif; 
+}
+
+.subtitulo, .texto-escueto { 
+    font-family: 'Cormorant Garamond', serif; 
+}
+
+.texto-tecnico, .footer-simple, .btn-nav { 
+    font-family: 'Montserrat', sans-serif; 
+}
 
 /* CABECERA */
 .cabecera {
@@ -51,7 +59,6 @@ h1, .titulo-display, h3 { font-family: 'Playfair Display', serif; }
     border-radius: 999px;
     text-decoration: none;
     color: var(--negro-app);
-    font-weight: 600;
     transition: all 0.3s ease;
 }
 
