@@ -2,50 +2,69 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
+/* NOTIFICACIONES */
+
 const notyf = new Notyf({
     duration: 4000,
     position: { x: 'right', y: 'bottom' }
 });
 
-window.onload = inicio;
+window.onload = iniciarConfigurador;
 
-async function inicio() {
+async function iniciarConfigurador() {
 
-    const contenedor = document.getElementById("canvas-three");
-    const btnBorrar = document.getElementById("borrar-canvas");
-    const btnGuardar = document.getElementById("guardar-guitarra");
+    /* ELEMENTOS DOM */
 
-    const subForma = document.getElementById("sub-forma");
-    const subMastil = document.getElementById("sub-mastil");
-    const subPastillas = document.getElementById("sub-pastillas");
+    const visor3D = document.getElementById("visor-guitarra-3d");
 
-    const btnForma = document.getElementById("cargar-forma");
-    const btnMastil = document.getElementById("cargar-mastil");
-    const btnPastillas = document.getElementById("cargar-pastillas");
+    const btnReset = document.getElementById("btn-reset-configuracion");
+    const btnGuardar = document.getElementById("btn-guardar-configuracion");
 
-    const idsSeleccionados = { forma: null, mastil: null, pastillas: null };
-    const piezasActuales = { forma: null, mastil: null, pastillas: null };
+    const menuCuerpos = document.getElementById("menu-cuerpos");
+    const menuMastiles = document.getElementById("menu-mastiles");
+    const menuPastillas = document.getElementById("menu-pastillas");
+
+    const btnCuerpos = document.getElementById("btn-cargar-cuerpo");
+    const btnMastiles = document.getElementById("btn-cargar-mastil");
+    const btnPastillas = document.getElementById("btn-cargar-pastillas");
+
+    /* ESTADO CONFIGURADOR */
+
+    const idsComponentesSeleccionados = { forma: null, mastil: null, pastillas: null };
+    const piezasCargadas = { forma: null, mastil: null, pastillas: null };
+
+    /* RUTA BASE */
 
     const pathArray = window.location.pathname.split('/');
     const rootPath = pathArray.slice(0, pathArray.indexOf('frontend')).join('/') + '/';
 
+    /* RENDER THREE */
+
     const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(contenedor.clientWidth, contenedor.clientHeight);
-    contenedor.appendChild(renderer.domElement);
+    renderer.setSize(visor3D.clientWidth, visor3D.clientHeight);
+    visor3D.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xfcfcfc);
 
-    const fov = 50;
-    const aspect = contenedor.clientWidth / contenedor.clientHeight;
-    const near = 0.1;
-    const far = 1000;
-    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    /* CÁMARA */
+
+    const camera = new THREE.PerspectiveCamera(
+        50,
+        visor3D.clientWidth / visor3D.clientHeight,
+        0.1,
+        1000
+    );
+
     camera.position.set(0, 0, 10);
+
+    /* CONTROLES */
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
+
+    /* LUCES */
 
     const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
     scene.add(hemi);
@@ -54,48 +73,61 @@ async function inicio() {
     dir.position.set(5, 5, 5);
     scene.add(dir);
 
+    /* RESIZE */
+
     function actualizarTamano() {
-        const width = contenedor.clientWidth;
-        const height = contenedor.clientHeight;
+
+        const width = visor3D.clientWidth;
+        const height = visor3D.clientHeight;
 
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height);
+
     }
 
     window.addEventListener("resize", actualizarTamano);
 
+    /* CARGADOR MODELOS */
+
     const loader = new GLTFLoader();
 
-    function cargarModelo(tipo, rutaGlb) {
+    function cargarModelo(tipo, ruta) {
 
-        if (!rutaGlb) return;
+        if (!ruta) return;
 
-        if (piezasActuales[tipo]) scene.remove(piezasActuales[tipo]);
+        if (piezasCargadas[tipo]) scene.remove(piezasCargadas[tipo]);
 
-        loader.load(rootPath + rutaGlb, (gltf) => {
+        loader.load(rootPath + ruta, (gltf) => {
 
             const obj = gltf.scene;
             obj.position.set(0, 0, 0);
 
-            piezasActuales[tipo] = obj;
+            piezasCargadas[tipo] = obj;
             scene.add(obj);
 
         });
+
     }
+
+    /* OBTENER COMPONENTES */
 
     try {
 
         const res = await fetch(rootPath + "backend/php/get_componentes.php");
         const data = await res.json();
 
-        poblarMenu("forma", data.formas, subForma);
-        poblarMenu("mastil", data.mastiles, subMastil);
-        poblarMenu("pastillas", data.pastillas, subPastillas);
+        poblarMenu("forma", data.formas, menuCuerpos);
+        poblarMenu("mastil", data.mastiles, menuMastiles);
+        poblarMenu("pastillas", data.pastillas, menuPastillas);
 
     } catch {
+
         notyf.error("Error cargando componentes");
+
     }
+
+    /* CREAR TARJETAS */
 
     function poblarMenu(tipo, items, menu) {
 
@@ -104,7 +136,7 @@ async function inicio() {
         items.forEach(item => {
 
             const card = document.createElement("div");
-            card.className = "card-item";
+            card.className = "tarjeta-componente";
 
             let idReal = null;
 
@@ -127,8 +159,8 @@ async function inicio() {
                 "pieza";
 
             card.innerHTML = `
-                <img src="${rootPath + imagen}" alt="${nombre}">
-                <span>${nombre}</span>
+            <img src="${rootPath + imagen}" alt="${nombre}">
+            <span>${nombre}</span>
             `;
 
             card.onclick = () => {
@@ -136,7 +168,7 @@ async function inicio() {
                 if (!idReal) return;
 
                 cargarModelo(tipo, rutaModelo);
-                idsSeleccionados[tipo] = idReal;
+                idsComponentesSeleccionados[tipo] = idReal;
 
             };
 
@@ -146,9 +178,11 @@ async function inicio() {
 
     }
 
-    if (btnBorrar) {
+    /* RESET */
 
-        btnBorrar.onclick = () => {
+    if (btnReset) {
+
+        btnReset.onclick = () => {
 
             scene.clear();
 
@@ -159,8 +193,8 @@ async function inicio() {
             dir.position.set(5, 5, 5);
             scene.add(dir);
 
-            Object.keys(idsSeleccionados).forEach(k => idsSeleccionados[k] = null);
-            Object.keys(piezasActuales).forEach(k => piezasActuales[k] = null);
+            Object.keys(idsComponentesSeleccionados).forEach(k => idsComponentesSeleccionados[k] = null);
+            Object.keys(piezasCargadas).forEach(k => piezasCargadas[k] = null);
 
             camera.position.set(0, 0, 10);
             controls.target.set(0, 0, 0);
@@ -172,11 +206,15 @@ async function inicio() {
 
     }
 
+    /* GUARDAR */
+
     if (btnGuardar) {
 
         btnGuardar.onclick = async () => {
 
-            if (!idsSeleccionados.forma || !idsSeleccionados.mastil || !idsSeleccionados.pastillas) {
+            if (!idsComponentesSeleccionados.forma ||
+                !idsComponentesSeleccionados.mastil ||
+                !idsComponentesSeleccionados.pastillas) {
 
                 notyf.error("Selecciona todas las piezas antes de guardar");
                 return;
@@ -184,9 +222,9 @@ async function inicio() {
             }
 
             const payload = {
-                id_forma_color: idsSeleccionados.forma,
-                id_mastil: idsSeleccionados.mastil,
-                id_pastilla_modelo: idsSeleccionados.pastillas
+                id_forma_color: idsComponentesSeleccionados.forma,
+                id_mastil: idsComponentesSeleccionados.mastil,
+                id_pastilla_modelo: idsComponentesSeleccionados.pastillas
             };
 
             try {
@@ -219,26 +257,30 @@ async function inicio() {
 
     }
 
-    function animate() {
+    /* LOOP */
 
-        requestAnimationFrame(animate);
+    function animar() {
+
+        requestAnimationFrame(animar);
         controls.update();
         renderer.render(scene, camera);
 
     }
 
-    animate();
+    animar();
+
+    /* MENÚS */
 
     const mapping = {
-        "cargar-forma": subForma,
-        "cargar-mastil": subMastil,
-        "cargar-pastillas": subPastillas
+        "btn-cargar-cuerpo": menuCuerpos,
+        "btn-cargar-mastil": menuMastiles,
+        "btn-cargar-pastillas": menuPastillas
     };
 
     const botones = {
-        "cargar-forma": btnForma,
-        "cargar-mastil": btnMastil,
-        "cargar-pastillas": btnPastillas
+        "btn-cargar-cuerpo": btnCuerpos,
+        "btn-cargar-mastil": btnMastiles,
+        "btn-cargar-pastillas": btnPastillas
     };
 
     Object.keys(mapping).forEach(id => {
@@ -250,11 +292,11 @@ async function inicio() {
 
         btn.onclick = () => {
 
-            const oculto = submenu.classList.contains("hidden");
+            const oculto = submenu.classList.contains("oculto");
 
-            document.querySelectorAll(".submenu").forEach(s => s.classList.add("hidden"));
+            document.querySelectorAll(".grid-componentes").forEach(s => s.classList.add("oculto"));
 
-            if (oculto) submenu.classList.remove("hidden");
+            if (oculto) submenu.classList.remove("oculto");
 
             setTimeout(actualizarTamano, 50);
 

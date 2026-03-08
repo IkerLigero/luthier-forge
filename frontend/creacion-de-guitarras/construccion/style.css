@@ -1,45 +1,58 @@
+/* RESET */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.contenedor {
+/* LAYOUT GENERAL */
+
+.layout-configurador {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 350px 1fr; /* Un poco más ancho para las tarjetas */
+    grid-template-columns: 350px 1fr;
     background: linear-gradient(135deg, #1c1c1c, #111);
     font-family: 'Montserrat', sans-serif;
 }
 
-#configuracion-guitarras {
+/* PANEL CONFIGURACIÓN */
+
+.panel-configuracion-guitarra {
     background: #181818;
     padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    border-right: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 5px 0 25px rgba(0,0,0,0.4);
-    overflow-y: auto; /* Por si hay muchas piezas */
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
 }
 
-/* SUBMENÚS Y TARJETAS */
-.submenu {
+/* SECCIONES DE COMPONENTES */
+
+.seccion-componente {}
+
+/* SUBMENÚ COMPONENTES */
+
+.grid-componentes {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-top: 15px;
     padding: 10px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
 
-.hidden {
+.oculto {
     display: none;
 }
 
-.card-item {
+/* TARJETAS COMPONENTES */
+
+.tarjeta-componente {
     background: #252525;
     border-radius: 8px;
     padding: 10px;
@@ -51,26 +64,27 @@
     border: 1px solid transparent;
 }
 
-.card-item:hover {
+.tarjeta-componente:hover {
     transform: scale(1.05);
     border-color: #8C2411;
 }
 
-.card-item img {
+.tarjeta-componente img {
     width: 60px;
     height: 60px;
     object-fit: contain;
     margin-bottom: 5px;
 }
 
-.card-item span {
+.tarjeta-componente span {
     color: #eee;
     font-size: 0.75rem;
     text-align: center;
 }
 
-/* BOTONES */
-.btn {
+/* BOTONES CONFIGURADOR */
+
+.boton-configurador {
     background-color: #8C2411;
     color: #ffffff;
     padding: 14px;
@@ -84,47 +98,61 @@
     font-weight: bold;
 }
 
-.btn:hover {
+.boton-configurador:hover {
     background-color: #a52d17;
-    box-shadow: 0 4px 15px rgba(140,36,17,0.3);
+    box-shadow: 0 4px 15px rgba(140, 36, 17, 0.3);
 }
 
-.btn-secondary { background-color: #444; margin-top: auto; }
-.btn-secondary:hover { background-color: #555; }
-.btn-success { background-color: #2e7d32; }
+.boton-reset {
+    background-color: #444;
+    margin-top: auto;
+}
 
-.separator {
+.boton-reset:hover {
+    background-color: #555;
+}
+
+.boton-guardar {
+    background-color: #2e7d32;
+}
+
+/* SEPARADOR */
+
+.separador-panel {
     border: 0;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin: 10px 0;
 }
 
-#canvas-three {
+/* CANVAS 3D */
+
+.area-visor-3d {
     position: relative;
     overflow: hidden;
 }
 
-#canvas-three canvas {
+.area-visor-3d canvas {
     width: 100% !important;
     height: 100% !important;
 }
 
-/* --- ESTILOS DEL BOTÓN DE INICIO (NUEVO) --- */
-.pildora-superior {
+/* NAVEGACIÓN SUPERIOR */
+
+.nav-superior-configurador {
     position: fixed;
     top: 20px;
     right: 20px;
     display: inline-flex;
-    background: #252525; 
+    background: #252525;
     padding: 5px;
     border-radius: 999px;
     gap: 5px;
-    z-index: 10000; /* Asegura que flote sobre el canvas de Three.js */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 10000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-pildora {
+.nav-superior-boton {
     padding: 8px 22px;
     border-radius: 999px;
     text-decoration: none;
@@ -135,11 +163,11 @@
     transition: all 0.3s ease;
 }
 
-.btn-pildora.activo {
+.nav-superior-activo {
     background-color: #8C2411;
     color: #ffffff;
 }
 
-.btn-pildora:hover:not(.activo) {
+.nav-superior-boton:hover:not(.nav-superior-activo) {
     background-color: #3d3d3d;
 }

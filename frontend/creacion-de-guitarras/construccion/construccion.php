@@ -4,57 +4,82 @@ require "../../../backend/php/comprobar_sesion.php";
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="style.css">
+
     <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-            }
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
         }
-    </script>
+    }
+</script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     <script type="module" src="construccion.js"></script>
+
     <title>Luthier Forge - Configurar</title>
+
 </head>
+
 <body>
 
-    <nav class="pildora-superior">
-        <a href="../home/creacionGuitarras.html" class="btn-pildora">Menú</a>
-        <a href="#" class="btn-pildora activo">Forja</a>
+    <!-- NAVEGACIÓN SUPERIOR -->
+
+    <nav class="nav-superior-configurador">
+        <a href="../home/creacionGuitarras.html" class="nav-superior-boton">Menú</a>
+        <a href="#" class="nav-superior-boton nav-superior-activo">Forja</a>
     </nav>
 
-    <div class="contenedor">
-        <aside id="configuracion-guitarras">
-            <div class="menu-seccion">
-                <button id="cargar-forma" class="btn">Cuerpos</button>
-                <div id="sub-forma" class="submenu hidden"></div>
+    <!-- LAYOUT CONFIGURADOR -->
+
+    <div class="layout-configurador">
+
+        <!-- PANEL CONFIGURACIÓN -->
+
+        <aside id="panel-configuracion-guitarra" class="panel-configuracion-guitarra">
+
+            <div class="seccion-componente">
+                <button id="btn-cargar-cuerpo" class="boton-configurador">Cuerpos</button>
+                <div id="menu-cuerpos" class="grid-componentes oculto"></div>
             </div>
 
-            <div class="menu-seccion">
-                <button id="cargar-mastil" class="btn">Mástiles</button>
-                <div id="sub-mastil" class="submenu hidden"></div>
+            <div class="seccion-componente">
+                <button id="btn-cargar-mastil" class="boton-configurador">Mástiles</button>
+                <div id="menu-mastiles" class="grid-componentes oculto"></div>
             </div>
 
-            <div class="menu-seccion">
-                <button id="cargar-pastillas" class="btn">Pastillas</button>
-                <div id="sub-pastillas" class="submenu hidden"></div>
+            <div class="seccion-componente">
+                <button id="btn-cargar-pastillas" class="boton-configurador">Pastillas</button>
+                <div id="menu-pastillas" class="grid-componentes oculto"></div>
             </div>
 
-            <hr class="separator">
-            
-            <button id="borrar-canvas" class="btn btn-secondary">Resetear</button>
-            <button id="guardar-guitarra" class="btn btn-success">Guardar Diseño</button>
+            <hr class="separador-panel">
+
+            <button id="btn-reset-configuracion" class="boton-configurador boton-reset">
+                Resetear
+            </button>
+
+            <button id="btn-guardar-configuracion" class="boton-configurador boton-guardar">
+                Guardar Diseño
+            </button>
+
         </aside>
 
-        <main id="canvas-three">
-        </main>
+        <!-- VISOR 3D -->
+
+        <main id="visor-guitarra-3d" class="area-visor-3d"></main>
+
     </div>
+
 </body>
+
 </html>
