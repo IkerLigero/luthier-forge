@@ -13,8 +13,8 @@ window.onload = inicio;
 
 async function inicio() {
 
-    /* DOM */
 
+    // Elementos del DOM
     const visor3D = document.getElementById("visor-guitarra-3d");
 
     const btnReset = document.getElementById("btn-reset-configuracion");
@@ -28,25 +28,18 @@ async function inicio() {
     const btnMastiles = document.getElementById("btn-cargar-mastil");
     const btnPastillas = document.getElementById("btn-cargar-pastillas");
 
-    /* ESTADO */
-
+    // Variables para almacenar ID
     const idsComponentesSeleccionados = { forma: null, mastil: null, pastillas: null };
     const piezasCargadas = { forma: null, mastil: null, pastillas: null };
 
-    /* ROOT PATH */
-
+    // PATH
     const pathArray = window.location.pathname.split("/");
     const rootPath = pathArray.slice(0, pathArray.indexOf("frontend")).join("/") + "/";
 
-    /* RENDERER */
-
+    // RENDERER
     let w = visor3D.clientWidth;
     let h = visor3D.clientHeight;
-
-    const renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        preserveDrawingBuffer: true
-    });
+    const renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true});
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(w, h);
@@ -61,10 +54,8 @@ async function inicio() {
 
     visor3D.appendChild(renderer.domElement);
 
-    // Definimos escena
+    // ESCENA
     const scene = new THREE.Scene();
-
-    // Definimos color de fondo
     const backgroundColor = 0xfcfcfc;
     scene.background = new THREE.Color(backgroundColor);
 
