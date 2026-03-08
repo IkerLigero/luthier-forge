@@ -10,7 +10,7 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 
 /* Recoger datos del formulario */
 $email = mysqli_real_escape_string($conn, $_POST["email"]);
-$password = mysqli_real_escape_string($conn, $_POST["password"]);
+$password = $_POST["password"];
 
 /* Buscar usuario */
 $sql = "SELECT * FROM usuario WHERE email = '$email'";
@@ -21,7 +21,7 @@ if (mysqli_num_rows($resultado) == 1) {
     $fila = mysqli_fetch_assoc($resultado);
 
     /* Comprobar contraseña */
-    if ($password == $fila["contrasenia_hash"]) {
+    if (password_verify($password, $fila["contrasenia_hash"])) {
 
         $_SESSION["id_usuario"] = $fila["id_usuario"];
         $_SESSION["nombre"] = $fila["nombre"];
