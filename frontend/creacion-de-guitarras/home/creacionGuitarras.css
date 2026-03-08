@@ -73,35 +73,39 @@ body{
     margin-top: auto;
 }
 
-/* --- NUEVO BOTÓN INICIO (AÑADIDO SIN ROMPER NADA) --- */
-.pildora-inicio {
-    position: fixed; /* Flota sobre la página */
-    top: 30px;       /* Distancia desde arriba */
-    left: 30px;      /* Distancia desde la izquierda */
-    display: inline-flex;
-    background: #f0f0f0; 
+.alternar {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+
+    display: flex;
+    gap: 10px;
+
+    background: #f0f0f0;
     padding: 6px;
     border-radius: 999px;
-    gap: 5px;
-    z-index: 1000;   /* Para que siempre esté encima */
+
+    z-index: 1000;
 }
 
-.btn-pildora {
+.btn-nav {
     padding: 8px 25px;
     border-radius: 999px;
     text-decoration: none;
+
     color: #1E1F1E;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
     font-size: 15px;
+
     transition: all 0.3s ease;
 }
 
-.btn-pildora.activo {
+.btn-nav.activo {
     background-color: #8C2411;
     color: #fcfcfc;
 }
 
-.btn-pildora:hover:not(.activo) {
+.btn-nav:hover:not(.activo) {
     background-color: #e0e0e0;
 }

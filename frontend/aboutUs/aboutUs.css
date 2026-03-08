@@ -49,7 +49,7 @@ h1, .titulo-display, h3 {
 .alternar {
     display: flex;
     gap: 10px;
-    background: #f0f0f0; /* Un gris muy suave para el contenedor de botones */
+    background: #f0f0f0;
     padding: 6px;
     border-radius: 999px;
 }
