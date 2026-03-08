@@ -31,7 +31,10 @@
 
 /* SECCIONES DE COMPONENTES */
 
-.seccion-componente {}
+.seccion-componente {
+    display: flex;
+    flex-direction: column;
+}
 
 /* SUBMENÚ COMPONENTES */
 
