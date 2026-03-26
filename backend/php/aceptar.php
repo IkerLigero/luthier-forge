@@ -66,6 +66,30 @@ if (!mysqli_query($conn, $sql_borrar)) {
     exit;
 }
 
-echo "<h2>Compra realizada correctamente</h2>";
-echo "<p><a href='../../frontend/carrito/historial.html'>Ver historial</a></p>";
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Compra realizada</title>
+
+<link rel="stylesheet" href="../../backend/php/php_css/aceptar.css">
+
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Compra realizada correctamente</h2>
+
+  <a class="btn" href="../../frontend/carrito/historial.html">
+    Ver historial
+  </a>
+
+  <a class="btn btn-secundario" href="../../frontend/index.html">
+    Volver al inicio
+  </a>
+</div>
+
+</body>
+</html>

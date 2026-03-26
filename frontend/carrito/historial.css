@@ -46,3 +46,50 @@ h2 {
     color: white;
     cursor: pointer;
 }
+#historial {
+    margin-top: 20px;
+}
+
+/* tarjeta tipo carrito */
+.item {
+    position: relative; /* IMPORTANTE */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+
+    border-left: 4px solid #8C2411;
+}
+
+.texto {
+    text-align: left;
+    font-size: 14px;
+}
+
+.precio {
+    font-weight: bold;
+    margin-right: 40px; /* <-- esto */
+}
+
+.btnEliminar {
+    top: 10px;
+    right: 10px;
+
+    background: transparent;
+    border: none;
+
+    color: #aaa;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btnEliminar:hover {
+    color: #ff3b3b;
+}

@@ -16,7 +16,7 @@ if (!$res_carrito || mysqli_num_rows($res_carrito) == 0) {
 $fila_carrito = mysqli_fetch_assoc($res_carrito);
 $id_carrito = $fila_carrito["id_carrito"];
 
-/* Sumar solo los productos de ese carrito */
+/* Sumar productos */
 $sql_total = "SELECT COALESCE(SUM(precio), 0) as total
               FROM carrito_detalle
               WHERE id_carrito = $id_carrito";
@@ -31,59 +31,29 @@ $fila_total = mysqli_fetch_assoc($res_total);
 $total = $fila_total["total"];
 
 if ($total <= 0) {
-    echo "<h2>El carrito está vacío</h2>";
-    exit;
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Pagar compra</title>
+<meta charset="UTF-8">
+<title>Carrito vacío</title>
+
+<link rel="stylesheet" href="../../backend/php/php_css/comprar.css">
+
 </head>
+
 <body>
 
-    <h2>Total a pagar: <?php echo number_format($total, 2, '.', ''); ?> €</h2>
+<div class="container-pago">
+    <h2>El carrito está vacío</h2>
 
-    <div id="paypal-button-container"></div>
-
-    <script src="https://www.paypal.com/sdk/js?client-id=AaX4MJsBtQdoAhilOe1MWVtEvvGz-kdbI_YK-1DIT2RJUSpb8JloPD32GYJpDlc3FYUX_ZBTeyUbPB_Y&currency=EUR"></script>
-
-    <script>
-paypal.Buttons({
-
-    createOrder: function(data, actions) {
-        return actions.order.create({
-            purchase_units: [{
-                amount: {
-                    value: "<?php echo number_format($total, 2, '.', ''); ?>"
-                }
-            }]
-        });
-    },
-
-    onApprove: function(data, actions) {
-        // Si PayPal aprueba, seguimos el flujo normal
-        alert("Pago aprobado (Sandbox)");
-        window.location.href = "aceptar.php";
-    },
-
-    onError: function(err) {
-        // Si Sandbox da error, seguimos igualmente para poder probar el sistema
-        console.log(err);
-        alert("Sandbox de PayPal falló. Continuamos en modo demo.");
-        window.location.href = "aceptar.php";
-    },
-
-    onCancel: function(data) {
-        // Si el usuario cancela el popup, permitimos continuar para testear
-        alert("Pago cancelado. Continuamos en modo demo.");
-        window.location.href = "aceptar.php";
-    }
-
-}).render('#paypal-button-container');
-</script>
+    <button class="btn" onclick="window.location.href='../../frontend/index.html'">
+        Volver al inicio
+    </button>
+</div>
 
 </body>
 </html>
+<?php
+exit;
+}
