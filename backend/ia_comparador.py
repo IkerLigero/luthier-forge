@@ -4,20 +4,23 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 
-# Cargamos el .env que está en la carpeta backend según tu indicación
+# Cargar desde la ruta backend
 load_dotenv('./.env') 
 
-
 app = Flask(__name__)
-CORS(app) # Permite que el navegador haga peticiones desde PHP a Python
+# Configuración robusta de CORS para evitar bloqueos en el navegador
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 @app.route('/comparar', methods=['POST'])
 def comparar_guitarras():
     data = request.json
-    g1 = data['g1']
-    g2 = data['g2']
+    g1 = data.get('g1')
+    g2 = data.get('g2')
+
+    if not g1 or not g2:
+        return jsonify({"error": "Faltan datos"}), 400
 
     prompt = f"""
     Eres un Maestro Luthier experto de la tienda 'Luthier Forge'. 
@@ -42,11 +45,13 @@ def comparar_guitarras():
     4. Termina con una conclusión recomendando cuál guitarra sería mejor para un cliente que busca un tono cálido y versátil, sin importar el precio.
     
     Instrucciones para el agente:
-    - Se brevé y directo, no te alargues en los distintos apartados.
+    - Se breve y directo, no te alargues en los distintos apartados.
     - No mas de dos lineas por apartado de guitarra.
-    - Separa los apartados con un enter. e. g. "1. Análisis de maderas: ... \n\n 2. Diferencia de pastillas: ... \n\n 3. Comparación: ... \n\n 4. Conclusión: ..."
-    - SOLO usa texto plano, no sues formato markdown ni emojis ni nada, solo texto. No uses negritas ni cursivas ni nada, solo texto plano.
-    - La introduccion y la despedida es constante: Introduccion: Buenas, soy el Maestro Luthier de Luthier Forge, y aquí tienes mi análisis. Despedida: Espero que esta información te sea útil para elegir la guitarra perfecta para ti.
+    - Separa los apartados con un enter doble.
+    - SOLO usa texto plano, no uses formato markdown ni emojis ni nada, solo texto. No uses negritas ni cursivas ni nada, solo texto plano.
+    - La introduccion y la despedida es constante: 
+    Introduccion: Buenas, soy el Maestro Luthier de Luthier Forge, y aquí tienes mi análisis. 
+    Despedida: Espero que esta información te sea útil para elegir la guitarra perfecta para ti.
     """
 
     try:
@@ -56,8 +61,9 @@ def comparar_guitarras():
         )
         return jsonify({"analisis": completion.choices[0].message.content})
     except Exception as e:
+        print(f"Error detectado: {e}")
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    # Ejecuta en el puerto 5000
+    # Importante: Mantener esta línea al margen izquierdo total
     app.run(host="0.0.0.0", port=5000, debug=True)
