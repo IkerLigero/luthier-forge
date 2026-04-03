@@ -1,0 +1,140 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FCFCFC;
+    font-family: 'Montserrat', sans-serif;
+    color: #1E1F1E;
+}
+
+/* HEADER */
+.topbar {
+    padding: 20px;
+}
+
+.logo {
+    width: 120px;
+}
+
+/* NAV */
+.alternar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.btn-nav {
+    text-decoration: none;
+    color: #1E1F1E;
+    margin-left: 15px;
+    font-weight: 500;
+}
+
+.btn-nav.activo {
+    color: #8C2411;
+}
+
+/* CONTENIDO */
+.historia {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 20px;
+}
+
+/* TITULO */
+.historia h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+/* INTRO */
+.intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: #A15918;
+    margin-bottom: 40px;
+}
+
+/* BLOQUES */
+.bloque {
+    margin-bottom: 40px;
+}
+
+.bloque h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+}
+
+.bloque p {
+    line-height: 1.6;
+    font-size: 1rem;
+}
+.logo {
+    height: 50px;
+    object-fit: contain;
+}
+
+/* BOTÓN */
+.btn-volver {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+
+    padding: 10px 20px;
+    border-radius: 30px;
+
+    background-color: #1E1F1E;
+    color: #FCFCFC;
+
+    transition: all 0.2s ease;
+}
+
+.btn-volver:hover {
+    background-color: #8C2411;
+}
+
+.alternar {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    display: flex;
+    align-items: center; /* IMPORTANTE */
+    gap: 5px;
+
+    background: #f0f0f0;
+    padding: 6px;
+    border-radius: 999px;
+
+    z-index: 1000;
+}
+.btn-nav {
+    display: inline-flex; /* CLAVE */
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 25px;
+    border-radius: 999px;
+
+    text-decoration: none;
+    color: #1E1F1E;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+
+    transition: all 0.3s ease;
+}
+
+.btn-nav.activo {
+    background-color: #8C2411;
+    color: #fcfcfc;
+}
+
+.btn-nav:hover:not(.activo) {
+    background-color: #e0e0e0;
+}
