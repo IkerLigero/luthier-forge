@@ -6,53 +6,40 @@ window.onload = inicio;
 const pathArray = window.location.pathname.split('/');
 const rootPath = pathArray.slice(0, pathArray.indexOf('frontend')).join('/') + '/';
 
-function inicio() {
+// Variables para el comparador IA
+let seleccionadas = [];
+const notyf = new Notyf({ duration: 3000, position: { x: 'right', y: 'bottom' } });
 
-    // Seleccionamos los contenedores de los visores 3D
+function inicio() {
     const containers = document.querySelectorAll('.canvas-container');
 
-    // Por cada contenedor, creamos una escena 3D
     containers.forEach(container => {
+        if (container.clientWidth === 0) return;
 
-        // Si el contenedor tiene ancho 0, no hacemos nada
-        if (container.clientWidth === 0) {
-            return;
-        }
-
-        // ESCENA
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0xfcfcfc);
 
-        // CAMARA
         let w = container.clientWidth;
         let h = container.clientHeight;
-        let fov = 45;
-        let near = 0.1;
-        let far = 1000;
-        let aspect = w / h;
-        const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+        const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
         camera.position.set(0, 8, 0.1);
         camera.lookAt(0, 0, -2.7);
 
-        // RENDERER
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(w, h);
         container.appendChild(renderer.domElement);
 
-        // ILUMINACION
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.8);
         const dirLight = new THREE.DirectionalLight(0xffffff, 1);
         dirLight.position.set(0, 10, 2);
         scene.add(ambientLight, dirLight);
 
-        // Cargamos piezas según atributos del contenedor
         const piezas = [
             container.getAttribute('data-forma'),
             container.getAttribute('data-mastil'),
             container.getAttribute('data-pastillas')
         ];
 
-        // LOADER
         piezas.forEach(ruta => {
             if (ruta) {
                 const loader = new GLTFLoader();
@@ -62,62 +49,94 @@ function inicio() {
             }
         });
 
-        // ANIMACION
         function animar() {
             requestAnimationFrame(animar);
             renderer.render(scene, camera);
         }
         animar();
-
-        // REDIMENSIONAR
-        window.addEventListener('resize', () => {
-            w = container.clientWidth;
-            h = container.clientHeight;
-            camera.aspect = w / h;
-            camera.updateProjectionMatrix();
-            renderer.setSize(w, h);
-        });
     });
 
-    // Configuración de notificaciones
-    const notyf = new Notyf({
-        duration: 3000,
-        position: { x: 'right', y: 'bottom' }
-    });
-
-    // Delegación de eventos: añadir guitarra al carrito
+    // Delegación para botones de carrito
     document.addEventListener('click', function (event) {
-        const target = event.target;
-        if (target && target.classList.contains('btn-carrito')) {
-
-            // Obtenemos los datos del botón
-            const idGuitarra = target.getAttribute('data-id');
-            const precioGuitarra = target.getAttribute('data-precio');
-
+        if (event.target.classList.contains('btn-carrito')) {
+            const idGuitarra = event.target.getAttribute('data-id');
+            const precioGuitarra = event.target.getAttribute('data-precio');
             const formData = new FormData();
             formData.append('id_guitarra', idGuitarra);
             formData.append('precio', precioGuitarra);
 
-            // Realizamos la petición POST para añadir al carrito
-            fetch("../../../backend/php/add_carrito.php", {
-                method: "POST",
-                body: formData
-            })
-                .then(async response => {
-                    if (response.ok) {
-                        notyf.success("¡Guitarra añadida al carrito!");
-                    } else {
-                        const errorMsg = await response.text();
-                        console.error("Error del servidor:", errorMsg);
-                        notyf.error("Error al añadir al carrito");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error de red:", error);
-                    notyf.error("No se pudo conectar con el servidor");
-                });
+            fetch("../../../backend/php/add_carrito.php", { method: "POST", body: formData })
+                .then(res => res.ok ? notyf.success("¡Añadida!") : notyf.error("Error"))
+                .catch(() => notyf.error("Error de red"));
         }
     });
+}
+
+// FUNCIONES DEL COMPARADOR IA
+window.seleccionarParaComparar = function(el) {
+    // Si ya está seleccionada, la quitamos
+    if (seleccionadas.includes(el)) {
+        el.style.border = "none";
+        seleccionadas = seleccionadas.filter(item => item !== el);
+    } else {
+        // Máximo 2 guitarras
+        if (seleccionadas.length < 2) {
+            el.style.border = "3px solid #8c2411";
+            seleccionadas.push(el);
+        } else {
+            notyf.error("Solo puedes comparar 2 guitarras");
+        }
+    }
+
+    // Actualizar botón
+    const btn = document.getElementById('btn-comparar-maestro');
+    if (seleccionadas.length === 2) {
+        btn.innerText = "¡Comparar ahora!";
+        btn.style.backgroundColor = "#8c2411";
+        btn.onclick = enviarAPython;
+    } else {
+        btn.innerText = `Comparar Guitarras (${seleccionadas.length}/2)`;
+        btn.style.backgroundColor = "#1a1a1a";
+        btn.onclick = null;
+    }
+}
+
+function enviarAPython() {
+    const dataGuitarras = seleccionadas.map(card => {
+        return {
+            cuerpo: card.querySelector('.val-cuerpo').innerText,
+            mastil: card.querySelector('.val-mastil').innerText,
+            pastillas: card.querySelector('.val-pastillas').innerText,
+            precio: card.querySelector('.precio').innerText
+        };
+    });
+
+    notyf.success("Consultando al Maestro Luthier...");
+    
+    fetch('http://localhost:5000/comparar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ g1: dataGuitarras[0], g2: dataGuitarras[1] })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const contenedor = document.getElementById('contenedor-resultado-ia');
+        const texto = document.getElementById('texto-ia');
+        contenedor.style.display = "block";
+        texto.innerText = data.analisis;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(error => {
+        console.error(error);
+        notyf.error("El servidor de IA no responde");
+    });
+}
+
+window.cerrarIA = function() {
+    document.getElementById('contenedor-resultado-ia').style.display = "none";
+    seleccionadas.forEach(el => el.style.border = "none");
+    seleccionadas = [];
+    document.getElementById('btn-comparar-maestro').innerText = "Comparar Guitarras (0/2)";
 }
 
 
