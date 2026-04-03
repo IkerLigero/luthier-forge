@@ -1,0 +1,172 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FCFCFC;
+    font-family: 'Montserrat', sans-serif;
+    color: #1E1F1E;
+    padding-top: 80px;
+}
+
+/* HEADER */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 15px 20px;
+    z-index: 999;
+}
+
+.logo {
+    height: 50px;
+    object-fit: contain;
+}
+
+/* NAV */
+.alternar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    background: #f0f0f0;
+    padding: 6px;
+    border-radius: 999px;
+}
+
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 25px;
+    border-radius: 999px;
+
+    text-decoration: none;
+    color: #1E1F1E;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+
+    transition: all 0.3s ease;
+}
+
+.btn-nav.activo {
+    background-color: #8C2411;
+    color: #fcfcfc;
+}
+
+.btn-nav:hover:not(.activo) {
+    background-color: #e0e0e0;
+}
+
+/* CONTENEDOR */
+.historia {
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 20px;
+}
+
+/* TITULO */
+.titulo-principal {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+}
+
+/* INTRO */
+.intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: #A15918;
+    margin-bottom: 60px;
+}
+
+/* FILAS (MAGAZINE) */
+.fila {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.fila.inversa {
+    flex-direction: row-reverse;
+}
+
+/* TEXTO */
+.texto {
+    flex: 1;
+}
+
+.texto h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+}
+
+.texto p {
+    line-height: 1.7;
+}
+
+/* IMAGEN */
+.imagen {
+    flex: 1;
+}
+
+.imagen img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* BLOQUE DESTACADO */
+.destacado {
+    background-color: #1E1F1E;
+    color: #FCFCFC;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 80px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    border-radius: 12px;
+}
+
+/* BOTÓN VOLVER */
+.btn-volver {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #1E1F1E;
+    color: #FCFCFC;
+    transition: all 0.2s ease;
+}
+
+.btn-volver:hover {
+    background-color: #8C2411;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .fila {
+        flex-direction: column;
+    }
+
+    .fila.inversa {
+        flex-direction: column;
+    }
+
+    .imagen img {
+        height: 250px;
+    }
+}

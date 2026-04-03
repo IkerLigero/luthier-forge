@@ -6,6 +6,7 @@ $id_usuario = $_SESSION['id_usuario'];
 
 // Consulta avanzada con JOINs para traer los nombres de los componentes
 $sql = "SELECT 
+            cd.id_detalle,
             gu.id_guitarra_usuario, 
             cd.precio,
             fc.descripcion AS nombre_cuerpo,
