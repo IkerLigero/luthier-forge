@@ -9,112 +9,41 @@ body {
     background-color: #FCFCFC;
     font-family: 'Montserrat', sans-serif;
     color: #1E1F1E;
+    padding-top: 80px;
 }
 
 /* HEADER */
 .topbar {
-    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 15px 20px;
+    z-index: 999;
 }
 
-.logo {
-    width: 120px;
-}
-
-/* NAV */
-.alternar {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.btn-nav {
-    text-decoration: none;
-    color: #1E1F1E;
-    margin-left: 15px;
-    font-weight: 500;
-}
-
-.btn-nav.activo {
-    color: #8C2411;
-}
-
-/* CONTENIDO */
-.historia {
-    max-width: 800px;
-    margin: 80px auto;
-    padding: 20px;
-}
-
-/* TITULO */
-.historia h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-/* INTRO */
-.intro {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    color: #A15918;
-    margin-bottom: 40px;
-}
-
-/* BLOQUES */
-.bloque {
-    margin-bottom: 40px;
-}
-
-.bloque h2 {
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 10px;
-}
-
-.bloque p {
-    line-height: 1.6;
-    font-size: 1rem;
-}
 .logo {
     height: 50px;
     object-fit: contain;
 }
 
-/* BOTÓN */
-.btn-volver {
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-
-    padding: 10px 20px;
-    border-radius: 30px;
-
-    background-color: #1E1F1E;
-    color: #FCFCFC;
-
-    transition: all 0.2s ease;
-}
-
-.btn-volver:hover {
-    background-color: #8C2411;
-}
-
+/* NAV */
 .alternar {
     position: fixed;
-    top: 30px;
-    right: 30px;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 
     display: flex;
-    align-items: center; /* IMPORTANTE */
+    align-items: center;
     gap: 5px;
 
     background: #f0f0f0;
     padding: 6px;
     border-radius: 999px;
-
-    z-index: 1000;
 }
+
 .btn-nav {
-    display: inline-flex; /* CLAVE */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 
@@ -137,4 +66,107 @@ body {
 
 .btn-nav:hover:not(.activo) {
     background-color: #e0e0e0;
+}
+
+/* CONTENEDOR */
+.historia {
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 20px;
+}
+
+/* TITULO */
+.titulo-principal {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+}
+
+/* INTRO */
+.intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: #A15918;
+    margin-bottom: 60px;
+}
+
+/* FILAS (MAGAZINE) */
+.fila {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.fila.inversa {
+    flex-direction: row-reverse;
+}
+
+/* TEXTO */
+.texto {
+    flex: 1;
+}
+
+.texto h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+}
+
+.texto p {
+    line-height: 1.7;
+}
+
+/* IMAGEN */
+.imagen {
+    flex: 1;
+}
+
+.imagen img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* BLOQUE DESTACADO */
+.destacado {
+    background-color: #1E1F1E;
+    color: #FCFCFC;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 80px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    border-radius: 12px;
+}
+
+/* BOTÓN VOLVER */
+.btn-volver {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #1E1F1E;
+    color: #FCFCFC;
+    transition: all 0.2s ease;
+}
+
+.btn-volver:hover {
+    background-color: #8C2411;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .fila {
+        flex-direction: column;
+    }
+
+    .fila.inversa {
+        flex-direction: column;
+    }
+
+    .imagen img {
+        height: 250px;
+    }
 }
