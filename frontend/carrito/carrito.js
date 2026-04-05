@@ -8,6 +8,7 @@ function inicio(){
     $("#comprar").click(comprar);
 }
 
+// Consulta al backend y reconstruye visualmente el estado completo del carrito.
 function cargarCarrito(){
     // Pide al backend los productos guardados en el carrito de la sesión activa.
     $.ajax({
@@ -25,6 +26,7 @@ function cargarCarrito(){
                 $("#productos").html("<p style='text-align:center; padding: 20px;'>Tu carrito está vacío.</p>");
             }
 
+            // Recorre cada guitarra guardada para pintarla y sumar su precio.
             datos.forEach(item => {
 
                 // Usa nombres por defecto para evitar huecos si alguna pieza no viene informada.
@@ -33,6 +35,7 @@ function cargarCarrito(){
                 let pastillas = item.nombre_pastillas || "Pastillas base";
 
                 // Genera una tarjeta visual por cada guitarra personalizada añadida al carrito.
+                // Inserta en el DOM una tarjeta resumida con nombre, precio y boton de borrado.
                 $("#productos").append(`
                     <div class="producto-card">
                         <div class="producto-info">
@@ -75,6 +78,7 @@ function eliminarItem(id_detalle){
     });
 }
 
+// Redirige al flujo de compra sin recalcular nada en cliente.
 function comprar(){
     // Envía al usuario al flujo PHP que calcula el total y monta el pago con PayPal.
     window.location.href = "../../backend/php/comprar.php";

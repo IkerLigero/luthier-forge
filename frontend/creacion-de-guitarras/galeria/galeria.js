@@ -1,12 +1,15 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
+// Arranca el pintado de galerías 3D cuando la vista está lista.
 window.onload = inicio;
 
+// Calcula la raíz del proyecto para resolver correctamente las rutas a modelos.
 const pathArray = window.location.pathname.split('/');
 const rootPath = pathArray.slice(0, pathArray.indexOf('frontend')).join('/') + '/';
 
 
+// Guarda temporalmente las guitarras seleccionadas para la comparación.
 // DEFINIMOS NOTYF PARA NOTIFICACIONES
 let seleccionadas = [];
 const notyf = new Notyf({
@@ -18,6 +21,7 @@ const notyf = new Notyf({
 });
 
 function inicio() {
+    // Busca todos los contenedores que deben renderizar una miniatura 3D de guitarra.
     const containers = document.querySelectorAll('.canvas-container');
     containers.forEach(container => {
         // Si el contenedor no tiene ancho, no intentamos renderizar
@@ -47,6 +51,7 @@ function inicio() {
         scene.add(ambientLight, dirLight);
 
         // CARGAMOS LOS MODELOS 3D
+        // Reúne las tres piezas asociadas a esa tarjeta para montar la guitarra completa.
         const piezas = [
             container.getAttribute('data-forma'),     // Cuerpo
             container.getAttribute('data-mastil'),    // Mástil
@@ -62,6 +67,7 @@ function inicio() {
         });
 
         // ANIMACIÓN
+        // Mantiene vivo el render para que la miniatura quede dibujada de forma estable.
         function animate() {
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
@@ -72,6 +78,7 @@ function inicio() {
 
 // SELECCION DE GUITARRAS
 window.seleccionarParaComparar = function (el) {
+    // Evita que pulsar en el botón de carrito también seleccione la tarjeta para comparar.
     // Si el usuario hace click en el botón de carrito, no seleccionamos la tarjeta
     if (event.target.classList.contains('btn-carrito')) return;
 
@@ -95,6 +102,7 @@ window.seleccionarParaComparar = function (el) {
     }
 
     // Actualizamos el botón de comparar según la cantidad seleccionada
+    // Refleja visualmente cuántas guitarras hay preparadas para la comparación.
     const btn = document.getElementById('btn-comparar-maestro');
     // Si hay 2 seleccionadas, habilitamos el botón
     if (seleccionadas.length === 2) {
@@ -108,6 +116,7 @@ window.seleccionarParaComparar = function (el) {
     }
 }
 
+// Lanza la comparación asistida por IA cuando ya hay dos guitarras elegidas.
 // CONEXION CON LA IA
 document.getElementById('btn-comparar-maestro').addEventListener('click', function (e) {
     e.preventDefault();            // Evita el comportamiento por defecto del botón para que no recargue la página
@@ -131,6 +140,7 @@ document.getElementById('btn-comparar-maestro').addEventListener('click', functi
     notyf.success("El Maestro Luthier está analizando...");
 
     // Enviamos los datos de las guitarras seleccionadas al servidor de IA
+    // Envía la comparación al servicio local de IA y muestra el análisis recibido.
     fetch('http://localhost:5000/comparar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -152,6 +162,7 @@ document.getElementById('btn-comparar-maestro').addEventListener('click', functi
         });
 });
 
+// Escucha los botones de añadir al carrito que viven dentro de cada tarjeta de galería.
 // LOGICA DEL CARRITO DE COMPRAS
 document.addEventListener('click', function (e) {
     // Si el click es en un botón de añadir al carrito, procesamos la acción
@@ -179,6 +190,7 @@ document.addEventListener('click', function (e) {
 
 // Función para cerrar el resultado de la IA y resetear las selecciones
 window.cerrarIA = function () {
+    // Cierra el panel de IA y deja la galería lista para una nueva comparación.
     // Ocultamos el resultado de la IA y reseteamos las selecciones
     document.getElementById('contenedor-resultado-ia').style.display = "none";
     // Reseteamos las selecciones y el estilo de las tarjetas

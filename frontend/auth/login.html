@@ -21,17 +21,22 @@
 
     <div class="main">
 
+        <!-- Logo principal de la pantalla de autenticación. -->
         <img src="../assets/logo.png" alt="logo" class="logo">
 
         <h2 class="titulo">Inicia sesión para continuar</h2>
 
+        <!-- Mensaje principal de entrada a la zona de autenticacion. -->
+        <!-- Botones que alternan entre los dos modos del formulario. -->
         <div class="alternar">
             <button id="btnLogin" class="activo" type="button">Iniciar sesión</button>
             <button id="btnRegistro" type="button">Registrarse</button>
         </div>
 
+        <!-- Este formulario se rellena desde JavaScript según la pestaña activa. -->
         <form id="formulario" action="../../backend/php/login.php" method="POST"></form>
 
+        <!-- Texto auxiliar con referencia legal al pie del formulario. -->
         <p class="terminos">
             Al continuar, aceptas los
             <a href="#">términos y condiciones de Luthier Forge</a>

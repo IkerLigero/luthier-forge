@@ -1,17 +1,22 @@
+// Arranca la carga del historial cuando la página termina de renderizar.
 window.onload = inicio;
 
 function inicio() {
 
+    // Pide al backend todas las compras guardadas del usuario autenticado.
     $.ajax({
         url: "../../backend/php/historial.php",
         method: "GET",
         success: function(res) {
 
+            // Convierte la respuesta JSON en un array de compras utilizable en cliente.
             var datos = JSON.parse(res);
             var contenedor = document.getElementById("historial");
 
+            // Limpia el contenedor antes de repintar el historial completo.
             contenedor.innerHTML = "";
 
+            // Recorre cada compra para construir su tarjeta visual en el DOM.
             for (let i = 0; i < datos.length; i++) {
 
                 var compra = datos[i];
@@ -35,6 +40,7 @@ function inicio() {
                 boton.innerHTML = "❌";
                 boton.className = "btnEliminar";
 
+                // Permite eliminar una compra concreta y refrescar la vista al terminar.
                 boton.onclick = function() {
 
                     $.ajax({
@@ -48,7 +54,7 @@ function inicio() {
 
                 };
 
-                // meter todo
+                // Monta la tarjeta final añadiendo texto, precio y botón de borrado.
                 div.appendChild(texto);
                 div.appendChild(precio);
                 div.appendChild(boton);

@@ -1,5 +1,6 @@
 /* Reset básico */
 * {
+    /* El reset evita diferencias de espaciado entre navegadores. */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,6 +8,7 @@
 }
 
 body {
+    /* Centra la tarjeta de acceso dentro de la ventana. */
     background-color: #D4D9D6;
     min-height: 100vh;
     display: flex;
@@ -16,6 +18,7 @@ body {
 
 /* Tarjeta */
 .main {
+    /* Contenedor principal que actua como tarjeta del login. */
     width: 420px;
     min-height: 85vh;
     /* separación arriba y abajo */
@@ -32,23 +35,27 @@ body {
 }
 
 .logo {
+    /* Mantiene el logo visible sin quitar protagonismo al formulario. */
     width: 110px;
     margin-bottom: 20px;
 }
 
 .titulo {
+    /* Da aire visual al encabezado y lo mantiene centrado. */
     margin-bottom: 25px;
     text-align: center;
 }
 
 /* Botones tipo uno lleno uno vacío */
 .alternar {
+    /* Coloca los dos modos del formulario en linea y con separacion comoda. */
     display: flex;
     gap: 15px;
     margin-bottom: 30px;
 }
 
 .alternar button {
+    /* Estilo base compartido entre el boton de login y el de registro. */
     padding: 10px 25px;
     border-radius: 999px;
     cursor: pointer;
@@ -59,12 +66,14 @@ body {
 
 /* El botón activo va relleno */
 .alternar .activo {
+    /* El estado activo elimina el borde para verse como accion principal. */
     background-color: #8C2411;
     border: none;
 }
 
 /* Formulario */
 #formulario {
+    /* Ordena los campos en columna con separación homogénea. */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -72,6 +81,7 @@ body {
 }
 
 .input {
+    /* Da contraste suficiente a los campos dentro del fondo oscuro. */
     padding: 12px;
     border-radius: 10px;
     border: none;
@@ -80,10 +90,12 @@ body {
 }
 
 .input:focus {
+    /* Marca visualmente que campo esta siendo editado. */
     outline: 1px solid #8C2411;
 }
 
 .btnPrincipal {
+    /* Boton principal para enviar tanto login como registro. */
     padding: 12px;
     border-radius: 999px;
     border: none;
@@ -93,16 +105,20 @@ body {
 }
 
 .btnPrincipal:hover {
+    /* Aclara ligeramente el boton para reforzar la interaccion. */
     background-color: #a52a14;
 }
 
 .terminos {
+    /* Presenta el texto legal como información secundaria. */
     margin-top: 25px;
     font-size: 12px;
     text-align: center;
 }
 
 .terminos a {
+    /* Resalta el enlace legal usando el color corporativo. */
     color: #8C2411;
     text-decoration: none;
 }
+/* Estilos de la pantalla de autenticación con login y registro en la misma tarjeta. */

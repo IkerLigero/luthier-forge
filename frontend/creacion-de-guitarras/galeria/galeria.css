@@ -1,10 +1,12 @@
 /* Tipografía general para textos menores y botones */
 body, .info-guitarra small, .btn-carrito, .precio {
+    /* Unifica la tipografia secundaria de toda la galeria. */
     font-family: 'Montserrat', sans-serif;
     background-color: #fcfcfc;
 }
 
 .galeria-grid {
+    /* Distribuye las tarjetas en columnas flexibles segun el ancho disponible. */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px;
@@ -12,6 +14,7 @@ body, .info-guitarra small, .btn-carrito, .precio {
 }
 
 .titulo-galeria {
+    /* Da protagonismo al encabezado principal con una tipografia editorial. */
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     text-align: center;
@@ -20,6 +23,7 @@ body, .info-guitarra small, .btn-carrito, .precio {
 }
 
 .card-guitarra {
+    /* Cada guitarra se presenta como una tarjeta vertical con visor y datos. */
     background: #fff;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -31,16 +35,19 @@ body, .info-guitarra small, .btn-carrito, .precio {
 }
 
 .card-guitarra:hover {
+    /* Añade una ligera elevacion visual al pasar el cursor. */
     transform: translateY(-3px);
 }
 
 .canvas-container {
+    /* Reserva el espacio fijo donde Three.js renderiza la miniatura 3D. */
     width: 100%;
     height: 320px;
     background: #fcfcfc;
 }
 
 .info-guitarra {
+    /* Agrupa la informacion textual y separa el visor del contenido. */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -50,22 +57,26 @@ body, .info-guitarra small, .btn-carrito, .precio {
 }
 
 .info-guitarra p {
+    /* Resalta cada etiqueta principal del bloque de informacion. */
     margin-bottom: 5px;
     font-weight: 700;
 }
 
 .info-guitarra small {
+    /* Usa un tono mas suave para valores y descripciones secundarias. */
     color: #555;
     line-height: 1.6;
 }
 
 hr {
+    /* Funciona como separador ligero entre datos y zona de compra. */
     border: 0;
     border-top: 1px solid #eee;
     margin: 15px 0;
 }
 
 .compra-contenedor {
+    /* Alinea precio y boton de compra en una misma fila. */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,6 +84,7 @@ hr {
 }
 
 .precio {
+    /* Destaca el importe final como dato clave de cada tarjeta. */
     font-weight: 700;
     color: #1a1a1a;
     font-size: 1.2rem;
@@ -80,6 +92,7 @@ hr {
 
 /* Aplicando tu estilo: .btn + .btn-principal */
 .btn-carrito {
+    /* Boton principal para enviar una guitarra al carrito. */
     background-color: #8c2411;
     color: #fcfcfc;
     padding: 12px 22px;
@@ -93,12 +106,14 @@ hr {
 }
 
 .btn-carrito:hover {
+    /* Refuerza la interaccion con sombra y un ligero zoom. */
     box-shadow: 0 2px 8px rgba(140, 36, 17, 0.3);
     transform: scale(1.01);
 }
 
 /* === ESTILOS DEL BOTÓN DE INICIO FLOTANTE (NUEVO) === */
 .pildora-superior {
+    /* Navegacion flotante fija para volver o cambiar de seccion rapidamente. */
     position: fixed;
     top: 30px;
     right: 30px;
@@ -112,6 +127,7 @@ hr {
 }
 
 .btn-pildora {
+    /* Estilo base de cada enlace dentro de la capsula superior. */
     padding: 8px 22px;
     border-radius: 999px;
     text-decoration: none;
@@ -122,10 +138,13 @@ hr {
 }
 
 .btn-pildora.activo {
+    /* Marca visualmente la seccion activa de la navegacion flotante. */
     background-color: #8C2411;
     color: #ffffff;
 }
 
 .btn-pildora:hover:not(.activo) {
+    /* Da feedback suave cuando se pasa por una opcion no activa. */
     background-color: #e0e0e0;
 }
+/* Estilos de la galería de guitarras guardadas con comparación e integración IA. */
