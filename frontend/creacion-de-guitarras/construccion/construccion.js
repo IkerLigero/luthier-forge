@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
+// Configura las notificaciones flotantes que acompañan toda la experiencia de creación.
 /* NOTYF */
 
 const notyf = new Notyf({
@@ -9,11 +10,13 @@ const notyf = new Notyf({
     position: { x: "right", y: "bottom" }
 });
 
+// Inicia el configurador 3D cuando la página ya está preparada.
 window.onload = inicio;
 
 async function inicio() {
 
 
+    // Recoge los nodos principales de la interfaz para trabajar con ellos más adelante.
     // Elementos del DOM
     const visor3D = document.getElementById("visor-guitarra-3d");
 
@@ -28,14 +31,17 @@ async function inicio() {
     const btnMastiles = document.getElementById("btn-cargar-mastil");
     const btnPastillas = document.getElementById("btn-cargar-pastillas");
 
+    // Guarda tanto los ids elegidos como las piezas 3D cargadas actualmente en escena.
     // Variables para almacenar ID
     const idsComponentesSeleccionados = { forma: null, mastil: null, pastillas: null };
     const piezasCargadas = { forma: null, mastil: null, pastillas: null };
 
+    // Calcula la ruta raíz del proyecto para poder cargar modelos y endpoints sin hardcodear.
     // PATH
     const pathArray = window.location.pathname.split("/");
     const rootPath = pathArray.slice(0, pathArray.indexOf("frontend")).join("/") + "/";
 
+    // Crea el renderer de Three.js y lo inserta en el visor principal.
     // RENDERER
     let w = visor3D.clientWidth;
     let h = visor3D.clientHeight;
@@ -54,12 +60,14 @@ async function inicio() {
 
     visor3D.appendChild(renderer.domElement);
 
+    // Escena base donde se irán añadiendo cuerpo, mástil y pastillas.
     // ESCENA
     const scene = new THREE.Scene();
     const backgroundColor = 0xfcfcfc;
     scene.background = new THREE.Color(backgroundColor);
 
 
+    // Cámara principal desde la que el usuario verá la guitarra montada.
     // CAMARA 
     let fov = 50;
     let aspect = w / h;
@@ -69,12 +77,14 @@ async function inicio() {
     camera.position.set(0, 0, 10);
 
 
+    // Permite orbitar alrededor del modelo con inercia suave.
     // Orbit Controls
     const controls = new OrbitControls(camera, renderer.domElement);
     let damping = true;
     controls.enableDamping = damping;
 
 
+    // Crea una iluminación neutra para que todas las piezas se vean bien en el visor.
     // LUCES
     function crearIluminacion() {
         const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
@@ -109,6 +119,7 @@ async function inicio() {
     // LOADER (glb)
     const loader = new GLTFLoader();
 
+    // Sustituye la pieza actual de un tipo por el nuevo modelo GLB seleccionado.
     function cargarModelo(tipo, ruta) {
         if (!ruta) return; // Si no hay ruta -> no hacemos nada
 
@@ -128,6 +139,7 @@ async function inicio() {
     }
 
     // Obtenemos componentes desde backend y poblamos menús
+    // Carga desde backend el catálogo disponible y rellena los tres menús laterales.
     try {
         const res = await fetch(rootPath + "backend/php/get_componentes.php");
         const data = await res.json();
@@ -141,6 +153,7 @@ async function inicio() {
     }
 
     // Definimos función para poblar menús de selección de componentes
+    // Genera visualmente cada menú de selección a partir de los datos recibidos.
     function poblarMenu(tipo, items, menu) {
 
         // Limpiamos menú antes de poblar
@@ -177,12 +190,14 @@ async function inicio() {
                 "pieza";
 
             // Construimos tarjeta
+            // Construye una tarjeta sencilla con imagen y nombre de la pieza.
             card.innerHTML = `
                 <img src="${rootPath + imagen}" alt="${nombre}">
                 <span>${nombre}</span>
             `;
 
             // Cuando se hace click en la tarjeta, cargamos el modelo 3D correspondiente y guardamos la selección
+            // Al seleccionar una tarjeta, carga su modelo y guarda su id para poder persistirlo después.
             card.onclick = () => {
                 if (!idReal) return; // Si no hay ID, no hacemos nada
                 cargarModelo(tipo, rutaModelo); // Llamamos a la función de carga del modelo con el loader
@@ -197,6 +212,7 @@ async function inicio() {
     }
 
     // BOTON DE REINICIAR COMPONENTES
+    // Devuelve el configurador al estado inicial y elimina todas las piezas montadas.
     if (btnReset) {
         btnReset.onclick = () => {
             scene.clear();
@@ -220,6 +236,7 @@ async function inicio() {
     }
 
     // BOTON DE GUARDAR
+    // Valida la configuración y la envía al backend para guardarla en el perfil del usuario.
     if (btnGuardar) {
 
         btnGuardar.onclick = async () => {
@@ -229,6 +246,7 @@ async function inicio() {
             }
 
             // Definimos el payload con los IDs
+            // Prepara solo los ids necesarios para que el backend reconstruya la guitarra.
             const payload = {
                 id_forma_color: idsComponentesSeleccionados.forma,
                 id_mastil: idsComponentesSeleccionados.mastil,
@@ -247,6 +265,7 @@ async function inicio() {
                 );
 
                 //Guardamos la imagen del renderer como PNG en formato base64
+                // Interpreta la respuesta del backend y comunica el resultado al usuario.
                 const resultado = await response.json();
 
                 //Ajustes del notif
@@ -265,6 +284,7 @@ async function inicio() {
     }
 
     // ANIMATE
+    // Mantiene activo el renderizado continuo del visor 3D.
     function animar() {
         requestAnimationFrame(animar);
         controls.update();
@@ -274,6 +294,7 @@ async function inicio() {
 
 
     // MENÚS DE COMPONENTES
+    // Relaciona cada botón superior con su submenú de componentes correspondiente.
     const mapping = {
         "btn-cargar-cuerpo": menuCuerpos,
         "btn-cargar-mastil": menuMastiles,
@@ -287,6 +308,7 @@ async function inicio() {
     };
 
     // Por cada botón, asignamos un evento de click que muestra el submenú correspondiente y oculta los demás
+    // Hace que solo un submenú esté visible a la vez y reajusta el visor tras abrirlo.
     Object.keys(mapping).forEach(id => {
 
         // Obtenemos el botón y el submenú correspondiente a partir del mapping

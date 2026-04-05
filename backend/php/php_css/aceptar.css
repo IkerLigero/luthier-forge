@@ -1,3 +1,4 @@
+/* Estilos de la vista que confirma una acción aceptada dentro del panel. */
 body {
   background: #fcfcfc;
   font-family: Arial, sans-serif;
@@ -41,3 +42,4 @@ h2 {
 .btn-secundario:hover {
   background: #555;
 }
+/* Estilos de la vista que confirma una acción administrativa aceptada. */

@@ -20,24 +20,29 @@ if (!isset($_SESSION["id_usuario"])) {
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
+// Valida que el frontend haya enviado un JSON correcto antes de continuar.
 if (json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(["success" => false, "error" => "JSON inválido"]);
     exit;
 }
 
 // CAPTURAMOS EL ID REAL DE LA SESIÓN
+// Usa el id real de la sesión para impedir que el cliente suplante a otro usuario.
 $id_user = $_SESSION["id_usuario"];
 
+// Convierte los ids recibidos a enteros y prepara la fecha de creación del diseño.
 $id_forma = intval($data['id_forma_color'] ?? 0);
 $id_mastil = intval($data['id_mastil'] ?? 0);
 $id_pastilla = intval($data['id_pastilla_modelo'] ?? 0);
 $fecha = date("Y-m-d H:i:s");
 
 try {
+    // Comprueba que la conexión a base de datos esté disponible.
     if ($conn->connect_error) {
         throw new Exception("Error de conexión");
     }
 
+    // Inserta la guitarra personalizada con las piezas elegidas por el usuario.
     $sql = "INSERT INTO guitarra_usuario 
             (id_usuario, id_forma_color, id_pastilla_modelo, id_mastil, fecha_creacion)
             VALUES (?, ?, ?, ?, ?)";
@@ -49,6 +54,7 @@ try {
 
     $stmt->bind_param("iiiis", $id_user, $id_forma, $id_pastilla, $id_mastil, $fecha);
 
+    // Ejecuta el guardado y devuelve el id creado para usarlo en el frontend.
     if (!$stmt->execute()) {
         throw new Exception($stmt->error);
     }
@@ -58,6 +64,7 @@ try {
         "id" => $conn->insert_id
     ]);
 
+// Mantiene las respuestas de error en formato JSON para el cliente.
 } catch (Exception $e) {
     echo json_encode(["success" => false, "error" => $e->getMessage()]);
 }

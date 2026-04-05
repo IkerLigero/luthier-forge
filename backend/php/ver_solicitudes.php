@@ -1,7 +1,9 @@
 <?php
+// Inicia la sesión y carga la conexión para consultar las solicitudes pendientes.
 session_start();
 require "conexion.php";
 
+// Recupera las solicitudes de distribuidor que aún esperan decisión del administrador.
 $sql = "SELECT solicitudes_distribuidor.id_solicitud, usuario.nombre
 FROM solicitudes_distribuidor
 JOIN usuario ON solicitudes_distribuidor.id_usuario = usuario.id_usuario
@@ -25,6 +27,7 @@ $resultado = mysqli_query($conn,$sql);
 <h2>Solicitudes de distribuidores</h2>
 
 <?php
+// Recorre cada solicitud pendiente y muestra sus acciones de aceptación o rechazo.
 while($fila = mysqli_fetch_assoc($resultado)){
 ?>
 
