@@ -10,7 +10,6 @@
 ## 🏗️ Tecnologías utilizadas.
 1. **THREE.js:** Es el encargado de renderizar y gestionar el entorno 3D en el navegador. Permite la visualización en tiempo real de los modelos de las guitarras, permitiendo al usuario rotar, hacer zoom y apreciar las texturas de los materiales.  
 &nbsp;
-
 2. **Python (Flask/FastAPI):** Actúa como el motor de inteligencia artificial del proyecto. Utiliza el **modelo Llama-3.1-8b** para actuar como un Maestro Luthier virtual. Procesa las especificaciones técnicas de las guitarras configuradas por el usuario y genera un análisis experto en tiempo real sobre el tono, la compatibilidad de maderas y la electrónica.
 &nbsp;
 
