@@ -10,16 +10,17 @@
 ## 🏗️ Tecnologías utilizadas.
 1. **THREE.js:** Es el encargado de renderizar y gestionar el entorno 3D en el navegador. Permite la visualización en tiempo real de los modelos de las guitarras, permitiendo al usuario rotar, hacer zoom y apreciar las texturas de los materiales.  
 &nbsp;
-2. **Python (Flask/FastAPI):** Actúa como el motor de inteligencia artificial del proyecto. Utiliza el **modelo Llama-3.1-8b** para actuar como un Maestro Luthier virtual. Procesa las especificaciones técnicas de las guitarras configuradas por el usuario y genera un análisis experto en tiempo real sobre el tono, la compatibilidad de maderas y la electrónica.
+
+3. **Python (Flask/FastAPI):** Actúa como el motor de inteligencia artificial del proyecto. Utiliza el **modelo Llama-3.1-8b** para actuar como un Maestro Luthier virtual. Procesa las especificaciones técnicas de las guitarras configuradas por el usuario y genera un análisis experto en tiempo real sobre el tono, la compatibilidad de maderas y la electrónica.
 &nbsp;
 
-3. **MySQL:** La base de datos donde se almacenan las especificaciones técnicas, compatibilidades entre piezas y el inventario de componentes disponibles en la forja. En nuestro caso almacena rutas a los diferentes elemtos fisicos (glbs).
+4. **MySQL:** La base de datos donde se almacenan las especificaciones técnicas, compatibilidades entre piezas y el inventario de componentes disponibles en la forja. En nuestro caso almacena rutas a los diferentes elemtos fisicos (glbs).
 &nbsp;
 
-4. **jQuery:** Utilizado para la manipulación ágil del DOM y la gestión de eventos de la interfaz de usuario de forma sencilla y eficiente.
+5. **jQuery:** Utilizado para la manipulación ágil del DOM y la gestión de eventos de la interfaz de usuario de forma sencilla y eficiente.
 &nbsp;
 
-5. **Blender:** Utilizado para el modelado 3D de alta precisión de los cuerpos, mástiles y hardware de las guitarras. Cada pieza ha sido exportada en formato .GLB para mantener un equilibrio entre calidad visual y rendimiento web.
+6. **Blender:** Utilizado para el modelado 3D de alta precisión de los cuerpos, mástiles y hardware de las guitarras. Cada pieza ha sido exportada en formato .GLB para mantener un equilibrio entre calidad visual y rendimiento web.
 &nbsp;
 
 
