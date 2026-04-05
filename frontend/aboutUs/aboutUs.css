@@ -1,0 +1,198 @@
+/* PALETA DE COLORES */
+
+:root {
+    --negro-app: #1E1F1E;
+    --hueso-fondo: #FCFCFC;
+    --crema-aux: #f3efe8;
+    --rojo-luthier: #8C2411;
+    --marron-madera: #A15918;
+}
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BASE */
+
+body {
+    /* Organiza la página en columna para separar cabecera, contenido y pie. */
+    background-color: var(--hueso-fondo);
+    color: var(--negro-app);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TIPOGRAFÍAS */
+
+h1,
+.titulo-nosotros,
+h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+.subtitulo-nosotros,
+.texto-destacado {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.texto-descriptivo,
+.footer-luthier,
+.nav-boton {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* CABECERA */
+
+.header-principal {
+    /* Alinea logo y navegacion en una cabecera limpia y horizontal. */
+    padding: 30px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--hueso-fondo);
+}
+
+.marca-luthier {
+    /* Agrupa el isotipo y el nombre de marca como una sola unidad visual. */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-header {
+    width: 45px;
+}
+
+.nombre-marca {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* NAVEGACIÓN */
+
+.nav-principal {
+    /* Convierte la navegación en una cápsula visual compacta. */
+    display: flex;
+    gap: 10px;
+    background: #f0f0f0;
+    padding: 6px;
+    border-radius: 999px;
+}
+
+.nav-boton {
+    padding: 8px 25px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--negro-app);
+    transition: all 0.3s ease;
+}
+
+.nav-activo {
+    background-color: var(--rojo-luthier);
+    color: var(--hueso-fondo);
+}
+
+/* HERO */
+
+.hero-nosotros {
+    /* Reserva un bloque amplio para presentar el mensaje principal. */
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.titulo-nosotros {
+    font-size: 3.5rem;
+    color: var(--negro-app);
+    margin-bottom: 10px;
+}
+
+.subtitulo-nosotros {
+    font-size: 1.5rem;
+    color: var(--marron-madera);
+}
+
+/* CONTENIDO */
+
+.contenedor-contenido {
+    /* Limita el ancho del contenido para que las tarjetas respiren mejor. */
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 80px 20px;
+}
+
+/* GRID TARJETAS */
+
+.grid-informacion {
+    /* Hace que las tarjetas se adapten solas al ancho disponible. */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* TARJETAS */
+
+.tarjeta-info-luthier {
+    /* Cada tarjeta funciona como una pieza de contenido independiente. */
+    background-color: var(--crema-aux);
+    padding: 45px 35px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-info-luthier:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(140, 36, 17, 0.08);
+}
+
+.barra-acento {
+    width: 40px;
+    height: 3px;
+    background-color: var(--rojo-luthier);
+    border-radius: 999px;
+    margin-bottom: 25px;
+}
+
+.tarjeta-info-luthier h3 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: var(--negro-app);
+}
+
+.texto-destacado {
+    color: var(--marron-madera);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.texto-descriptivo {
+    /* Mejora la lectura de los parrafos largos dentro de cada tarjeta. */
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    text-align: left;
+}
+
+/* FOOTER */
+
+.footer-luthier {
+    text-align: center;
+    padding: 50px;
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px solid #eee;
+}
+
+.anio-marca {
+    color: var(--rojo-luthier);
+    font-weight: bold;
+}
+/* Hoja de estilos de la página "Sobre nosotros" con enfoque editorial y de marca. */

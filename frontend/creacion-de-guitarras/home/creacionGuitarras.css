@@ -1,0 +1,125 @@
+/* --- TU CÓDIGO ORIGINAL (MANTENIDO) --- */
+body{
+    /* Centra el contenido principal de la portada de creacion en columna. */
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #fcfcfc;
+    font-family: "Montserrat";
+}
+
+.botones a {
+    /* Permite que los enlaces se comporten visualmente como botones completos. */
+    text-decoration: none;
+    display: inline-block;
+}
+
+#guitarra{
+    /* Separa la imagen principal del resto del contenido. */
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.cuerpo{
+    /* Agrupa titulo, descripcion y botones como un bloque principal. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+}
+
+#titulo{
+    /* Convierte el titulo en el punto focal de la portada. */
+    margin-top:10px;
+    margin-bottom: 0px;
+    font-size: 3rem;
+    font-family: "Playfair Display", serif;
+}
+
+#btn-nuevo{
+    /* Accion principal para empezar una configuracion nueva. */
+    background-color: #8C2411;
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    border: none;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 200px;
+    cursor: pointer;
+}
+
+#btn-coleccion{
+    /* Accion secundaria para ir a la coleccion o galeria del usuario. */
+    background-color: transparent;
+    color: #8C2411;
+    padding: 14px 32px;
+    border-radius: 30px;
+    border: 2px solid #8C2411;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 200px;
+    cursor: pointer;
+}
+
+#descripcion{
+    /* Reduce el hueco superior para mantener el texto pegado al titulo. */
+    margin-top: 0;
+}
+
+.pie{
+    /* Empuja el pie de pagina hacia abajo cuando sobra altura en pantalla. */
+    margin-top: auto;
+}
+
+.alternar {
+    /* Crea una capsula flotante de navegacion en la esquina superior derecha. */
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    display: flex;
+    gap: 10px;
+
+    background: #f0f0f0;
+    padding: 6px;
+    border-radius: 999px;
+
+    z-index: 1000;
+}
+
+.btn-nav {
+    /* Estilo base de cada opcion dentro de la navegacion superior. */
+    padding: 8px 25px;
+    border-radius: 999px;
+    text-decoration: none;
+
+    color: #1E1F1E;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+
+    transition: all 0.3s ease;
+}
+
+.btn-nav.activo {
+    /* Resalta la pagina actual dentro de la navegacion. */
+    background-color: #8C2411;
+    color: #fcfcfc;
+}
+
+.btn-nav:hover:not(.activo) {
+    /* Añade un hover discreto a las opciones inactivas. */
+    background-color: #e0e0e0;
+}
+/* Estilos de la portada de la sección de creación de guitarras personalizadas. */

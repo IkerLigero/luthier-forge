@@ -1,17 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sobre Nosotros - Luthier Forge</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="aboutUs.css">
 </head>
+
 <body>
-    <header class="cabecera">
+
+    <!-- CABECERA -->
+    <header class="header-principal">
+
+        <div class="marca-luthier">
+            <img src="../assets/logo.png" alt="Logo Luthier Forge" class="logo-header">
+            <h1 class="nombre-marca">Luthier Forge</h1>
+        </div>
+
+        <nav class="nav-principal">
+            <a href="../index.html" class="nav-boton">Inicio</a>
+            <a href="#" class="nav-boton nav-activo">Nosotros</a>
+        </nav>
 
     </header>
 
-    <main class="prinicpal">
+    <!-- MAIN -->
+    <main class="contenedor-contenido">
+
+        <!-- Introducción principal de la página "Sobre nosotros". -->
+        <section class="hero-nosotros">
+            <h2 class="titulo-nosotros">Sobre Nosotros</h2>
+            <p class="subtitulo-nosotros">Pasión por la madera y el sonido personalizado.</p>
+        </section>
+
+        <!-- Bloque de tarjetas que resume identidad y propuesta de valor. -->
+        <section class="grid-informacion">
+
+            <!-- Tarjeta centrada en la misión de la marca. -->
+            <!-- Tarjeta que describe lo que ofrece la plataforma al usuario. -->
+            <article class="tarjeta-info-luthier">
+                <div class="barra-acento"></div>
+                <h3>Nuestra misión</h3>
+                <p class="texto-destacado">Excelencia en cada fibra.</p>
+                <p class="texto-descriptivo">
+                    En Luthier Forge, nuestra misión trasciende la simple fabricación. Buscamos la
+                    unión perfecta entre la acústica tradicional y las necesidades del músico moderno.
+                </p>
+            </article>
+
+            <!-- Tarjeta dedicada a explicar el proceso de trabajo artesanal. -->
+            <article class="tarjeta-info-luthier">
+                <div class="barra-acento"></div>
+                <h3>Qué ofrecemos</h3>
+                <p class="texto-destacado">Configuración artesanal.</p>
+                <p class="texto-descriptivo">
+                    Una plataforma intuitiva donde seleccionar maderas tonales, herrajes de alta
+                    precisión y acabados que definen tu identidad sonora única.
+                </p>
+            </article>
+
+            <article class="tarjeta-info-luthier">
+                <div class="barra-acento"></div>
+                <h3>Cómo trabajamos</h3>
+                <p class="texto-destacado">El arte del detalle.</p>
+                <p class="texto-descriptivo">
+                    Nuestro proceso es una danza entre la herencia de los antiguos maestros y la
+                    precisión tecnológica actual en cada tallado y ajuste manual.
+                </p>
+            </article>
+
+        </section>
 
     </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-luthier">
+        <p>© Luthier Forge · <span class="anio-marca">2026</span></p>
+    </footer>
+
 </body>
+
 </html>

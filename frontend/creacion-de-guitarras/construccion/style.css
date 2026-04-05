@@ -1,0 +1,177 @@
+/* RESET */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* LAYOUT GENERAL */
+
+.layout-configurador {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    background: linear-gradient(135deg, #1c1c1c, #111);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* PANEL CONFIGURACIÓN */
+
+.panel-configuracion-guitarra {
+    background: #181818;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+}
+
+/* SECCIONES DE COMPONENTES */
+
+.seccion-componente {
+    display: flex;
+    flex-direction: column;
+}
+
+/* SUBMENÚ COMPONENTES */
+
+.grid-componentes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.oculto {
+    display: none;
+}
+
+/* TARJETAS COMPONENTES */
+
+.tarjeta-componente {
+    background: #252525;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, border 0.2s;
+    border: 1px solid transparent;
+}
+
+.tarjeta-componente:hover {
+    transform: scale(1.05);
+    border-color: #8C2411;
+}
+
+.tarjeta-componente img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.tarjeta-componente span {
+    color: #eee;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* BOTONES CONFIGURADOR */
+
+.boton-configurador {
+    background-color: #8C2411;
+    color: #ffffff;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.boton-configurador:hover {
+    background-color: #a52d17;
+    box-shadow: 0 4px 15px rgba(140, 36, 17, 0.3);
+}
+
+.boton-reset {
+    background-color: #444;
+    margin-top: auto;
+}
+
+.boton-reset:hover {
+    background-color: #555;
+}
+
+.boton-guardar {
+    background-color: #2e7d32;
+}
+
+/* SEPARADOR */
+
+.separador-panel {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+/* CANVAS 3D */
+
+.area-visor-3d {
+    position: relative;
+    overflow: hidden;
+}
+
+.area-visor-3d canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* NAVEGACIÓN SUPERIOR */
+
+.nav-superior-configurador {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-flex;
+    background: #252525;
+    padding: 5px;
+    border-radius: 999px;
+    gap: 5px;
+    z-index: 10000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-superior-boton {
+    padding: 8px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.nav-superior-activo {
+    background-color: #8C2411;
+    color: #ffffff;
+}
+
+.nav-superior-boton:hover:not(.nav-superior-activo) {
+    background-color: #3d3d3d;
+}
+/* Estilos del configurador 3D donde el usuario monta su guitarra personalizada. */

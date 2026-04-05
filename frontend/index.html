@@ -1,47 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="module" src="./js/main.js"></script>
+    <title>Luthier Forge</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <div class="contenedor">
-        <header class="cabecera">
 
-            <img src="./assets/logo.png">
+    <header class="topbar">
+        <div class="navbar">
 
-            <h1>Luthier Forge</h1>
-
-            <nav class="navegador">
-                <ul class="lista">
-                    <li><a href="aboutUs.html">Sobre Nosotros</a></li>
-                    <li>Ayuda</li>
-                    <li>Iniciar sesión</li>
-                </ul>
-            </nav>
-        </header>
-
-        <section class="banner">
-
-            <div class="textoBanner">
-                <h2>Diseña tu guitarra ideal</h2>
-                <p>
-                    Te invitamos a nuestro diseñador de guitarras.
-                    Personaliza cada detalle y crea un instrumento único.
-                </p>
-
-                <a class="empezar">Empezar</a>
+            <div class="logo">
+                <img src="./assets/logo.png" alt="Luthier Forge">
+                <span>Luthier Forge</span>
             </div>
 
-        </section>
+            <nav class="menu">
+                <a href="aboutUs/aboutUs.html">Sobre Nosotros</a>
+                <a href="./funciona/funciona.html" target="_blank">Ayuda</a>
+                <a href="./creacion-de-guitarras/galeria/galeria.php">Mis guitarras</a>
+                <a href="./carrito/carrito.html">Carrito</a>
+            </nav>
 
+            <div class="acciones">
+                <a href="./auth/login.html" class="btn btn-login">Iniciar Sesión</a>
+                <a href="../backend/php/logout.php" class="btn btn-logout">Cerrar sesión</a>
+            </div>
 
-    </div>
+        </div>
+    </header>
+
+    <section class="hero">
+
+        <div class="contenidoHero">
+
+            <span class="tag">HAZ TU GUITARRA SOÑADA</span>
+
+            <h2>
+                DESATA TU<br>
+                PODER.<br>
+                AMPLIFICA TU<br>
+                AMBICIÓN.
+            </h2>
+
+            <p>Personaliza la guitarra de tus sueños.</p>
+
+            <div class="botones">
+                <a href="./creacion-de-guitarras/home/creacionGuitarras.html" class="btn btn-principal">EMPEZAR</a>
+                <a href="./tradicion/tradicion.html" class="btn btn-secundario">TRADICIÓN</a>
+            </div>
+
+        </div>
+
+    </section>
+
 </body>
-
 </html>

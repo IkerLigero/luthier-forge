@@ -1,88 +1,197 @@
+html, body{
+    height:100vh;
+    overflow:hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.contenedor {
-    width: 100%;
+body {
+    background-color: #1E1F1E;
+    color: #FCFCFC;
+    font-family: 'Montserrat', sans-serif;
+    
+    margin: 0;
 }
 
-.cabecera {
-    background-color: #6b1f1f;
-    height: 90px;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* HEADER */
+.topbar{
+    width:100%;
+    background-color:#E7DAC3;
+}
+
+.navbar{
+    width:100%;
+    padding:20px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Playfair Display', serif;
+    font-size:2.2rem;
+    color:#1E1F1E;
+}
+
+.logo img{
+    height:40px;
+    width:auto;
+    margin-right: 10px;
+}
+.menu {
     display: flex;
-    align-items: center;
-    padding: 0 50px;
-    gap: 20px;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-/* Logo */
-.cabecera img {
-    height: 55px;
-    width: auto;
+.menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: #1E1F1E;
+    font-weight: bold;
 }
 
-/* Título */
-.cabecera h1 {
-    color: #f2d28b;
-    font-size: 34px;
-    font-weight: normal;
-    margin-right: auto; 
+.menu a:hover {
+    color: #8c2411;
 }
 
-/* Navegación */
-.navegador .lista {
-    list-style: none;
+.acciones {
     display: flex;
-    gap: 35px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.navegador .lista li {
-    color: #f2d28b;
-    font-size: 16px;
-    cursor: pointer;
+.btn {
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-size: 1rem;
+    border: 1px solid #8c2411;
 }
 
-.navegador .lista li:hover {
-    text-decoration: underline;
+.btn-login {
+    background-color: #8c2411;
+    color: #fcfcfc;
 }
 
-
-.banner{
-    background: url(/assets/banner.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 550px;
-
-    display: flex;
-    align-items: center;
-    padding-left: 80px;
+.btn-logout {
+    background-color: #8c2411;
+    color: #fcfcfc;
 }
 
-/* Bloque texto izquierda */
-.textoBanner{
-    background-color: rgba(107, 31, 31, 0.85);
-    color: #f2d28b;
-    width: 50%;
-    padding: 40px;
+/* HERO */
+.hero{
+    width:100%;
+    height:100vh;
+    background-image:url("../assets/fondo_inicio.png");
+    background-size:cover;
+    background-position:center right;
+    background-repeat:no-repeat;
+    display:flex;
+    align-items:center;
+}
+
+.contenidoHero{
+    width:90%;
+    max-width:600px;
+    margin-left:80px;
+    text-align:left;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #8c2411;
+    color: #fcfcfc;
+    padding: 10px 18px;
     border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
 
+.contenidoHero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: #E7DAC3;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.contenidoHero p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: #fcfcfc;
+    margin-bottom: 30px;
+    color:#E7DAC3;
+}
+
+.botones {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 400px;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-/* Botón abajo */
-.empezar{
-    background-color: #f2d28b;
-    color: #6b1f1f;
-    border: none;
-    padding: 15px 40px;
-    font-size: 18px;
-    cursor: pointer;
-    align-self: flex-start;
-    border-radius: 5px;
+.btn-principal {
+    background-color: #8c2411;
+    color: #fcfcfc;
 }
 
+.btn-secundario {
+    background-color: transparent;
+    color: #fcfcfc;
+    border: 1px solid #fcfcfc;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu {
+        justify-content: center;
+    }
+
+    .acciones {
+        justify-content: center;
+    }
+
+    .contenidoHero h2 {
+        font-size: 3rem;
+    }
+
+    .contenidoHero p {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .contenidoHero h2 {
+        font-size: 2.3rem;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .botones {
+        flex-direction: column;
+    }
+
+    .btn {
+        text-align: center;
+    }
+}
+/* Estilos globales de la portada principal y sus secciones compartidas. */

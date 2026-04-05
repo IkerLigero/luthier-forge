@@ -1,25 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <title>Login - Luthier Forge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- CSS propio -->
     <link rel="stylesheet" href="login.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- NOTYF CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
 </head>
+
 <body>
+
     <div class="main">
-        <img src="./assets/logo.png" alt="logo">
-        <h2 class="text">Inicia sesion para continuar.</h2>
+
+        <!-- Logo principal de la pantalla de autenticación. -->
+        <img src="../assets/logo.png" alt="logo" class="logo">
+
+        <h2 class="titulo">Inicia sesión para continuar</h2>
+
+        <!-- Mensaje principal de entrada a la zona de autenticacion. -->
+        <!-- Botones que alternan entre los dos modos del formulario. -->
         <div class="alternar">
-            <button id="btn-login">Inciar Sesion</button>
-            <button id="btn-registro">Registrarse</button>
+            <button id="btnLogin" class="activo" type="button">Iniciar sesión</button>
+            <button id="btnRegistro" type="button">Registrarse</button>
         </div>
 
-        <form action="" method="post" id="formulario">
-            <!-- Aqui va el form generado por el js -->
-        </form>
-    
-        <p>Al continuar, aceptas los <a href="#">términos y condiciones de Luthier Forge</a></p>
+        <!-- Este formulario se rellena desde JavaScript según la pestaña activa. -->
+        <form id="formulario" action="../../backend/php/login.php" method="POST"></form>
+
+        <!-- Texto auxiliar con referencia legal al pie del formulario. -->
+        <p class="terminos">
+            Al continuar, aceptas los
+            <a href="#">términos y condiciones de Luthier Forge</a>
+        </p>
+
     </div>
+
+    <!-- NOTYF JS -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <!-- JS propio -->
+    <script src="login.js"></script>
+
 </body>
+
 </html>
