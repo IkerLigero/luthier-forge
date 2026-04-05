@@ -1,10 +1,15 @@
 <?php
+// Comprueba que el usuario haya iniciado sesión.
 require_once "comprobar_sesion.php";
+// Abre la conexión con la base de datos.
 require_once "conexion.php";
 
+// Coge el id del usuario logueado para cargar solo su carrito.
 $id_usuario = $_SESSION['id_usuario'];
 
-// Consulta avanzada con JOINs para traer los nombres de los componentes
+/* Busca los productos que hay en el carrito del usuario.
+    Se usan JOINs para traer también los nombres de las piezas
+    y no solo los ids guardados en la base de datos. */
 $sql = "SELECT 
             cd.id_detalle,
             gu.id_guitarra_usuario, 
@@ -24,12 +29,13 @@ $resultado = mysqli_query($conn, $sql);
 $productos = [];
 
 if ($resultado) {
+    // Guarda cada fila en un array para devolverlo al frontend.
     while ($fila = mysqli_fetch_assoc($resultado)) {
         $productos[] = $fila;
     }
 }
 
-// Devolvemos el JSON limpio
+// Devuelve la respuesta en formato JSON para que la lea JavaScript.
 header('Content-Type: application/json');
 echo json_encode($productos);
 ?>
