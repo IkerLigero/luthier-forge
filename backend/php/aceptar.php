@@ -4,6 +4,15 @@ require "comprobar_sesion.php";
 // Abre la conexión con la base de datos.
 require "conexion.php";
 
+// Si viene con ?id es una aceptación de solicitud de distribuidor, no una compra.
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+    $sql = "UPDATE solicitudes_distribuidor SET estado='aceptada' WHERE id_solicitud=$id";
+    mysqli_query($conn, $sql);
+    header("Location: ver_solicitudes.php");
+    exit;
+}
+
 // Coge el id del usuario que está logueado.
 $id_usuario = $_SESSION['id_usuario'];
 
